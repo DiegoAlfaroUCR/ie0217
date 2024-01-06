@@ -46,7 +46,7 @@ Length: Retorna la longitud de un string dado, lo cual permite operar en strings
 
 Operador +=: Permite concatenar dos o más strings de una forma fácil, la cual es la operación más común en el manejo de strings.
 
-Find: Busca instancias de parámetros dados dentro de un string y retorna la posición si lo encuentra. Esto es útil en una función que busque una secuencia específica en un string dado, por ejemplo, si se quiere reemplazar palabras claves dentro de un string.
+Find: Busca instancias de parámetros dados dentro de un string y retorna la posición si lo encuentra. Esto es útil en una función que busque una secuencia específica en un string dado, por ejemplo, si se quiere reemplazar palabras claves dentro de un string. [1]
 
 **10. ¿Cuál es la principal diferencia entre un bucle do-while y un bucle while?**
 
@@ -56,7 +56,7 @@ Aparte del formato, la diferencia principal es que el do-while ejecuta el códig
 ¿se pueden encapsular en miembros privados y públicos dentro de una estructura?
 Explique su respuesta.**
 
-Si, se pueden almacenar funciones dentro de structs al igual que las variables. En el caso de los datos, en las estructuras estos son por defecto públicos, pero se pueden modificar a privados si en la estructura del struct se construye bajo la categoría private. Por ejemplo; 
+Si, se pueden almacenar funciones dentro de structs al igual que las variables. En el caso de los datos, en las estructuras estos son por defecto públicos, pero se pueden modificar a privados si en la estructura del struct se construye bajo la categoría private [2]. Por ejemplo; 
 
 ```
 struct nombre {
@@ -88,7 +88,7 @@ Goto no es recomendable pues rompe el hilo lógico que sigue un programa normal,
 **15. ¿Dónde y cómo se guardan las variables que se crean en C++? Explique la diferencia
 entre el almacenamiento de variables locales y globales.**
 
-Toda variable manejada por un programa escrito en C++ se guarda temporalmente en memoria RAM, en distintas secciones designadas por el compilador. Se divide en la sección del texto del código, una sección de constantes, variables globales y estáticas, y el “Heap” y “Stack” de la memoria dinámica. Estas se guardan como conjuntos de bits (de tamaño dependiendo del tipo de variable) con localizaciones definidas iniciando desde la memoria reservada al texto hasta el Stack con direcciones enumeradas crecientemente de forma hexadecimal. La diferencia entre el almacenamiento de variables locales (en el Stack) y las variables globales, es que la memoria del Stack es desalojada una vez se sale de una función, mientras que la de las variables globales persiste hasta que se finalice el programa. Esto significa que las variables locales se pierden cuando se cierra la función que las originó.
+Toda variable manejada por un programa escrito en C++ se guarda temporalmente en memoria RAM, en distintas secciones designadas por el compilador. Se divide en la sección del texto del código, una sección de constantes, variables globales y estáticas, y el “Heap” y “Stack” de la memoria dinámica [3]. Estas se guardan como conjuntos de bits (de tamaño dependiendo del tipo de variable) con localizaciones definidas iniciando desde la memoria reservada al texto hasta el Stack con direcciones enumeradas crecientemente de forma hexadecimal. La diferencia entre el almacenamiento de variables locales (en el Stack) y las variables globales, es que la memoria del Stack es desalojada una vez se sale de una función, mientras que la de las variables globales persiste hasta que se finalice el programa. Esto significa que las variables locales se pierden cuando se cierra la función que las originó.
 
 **16. ¿Cuál es la diferencia entre pasar parámetros por valor, por referencia y por puntero?**
 
@@ -115,15 +115,15 @@ La directiva #ifndef se emplea en archivos de header (.hpp) para indicar un set 
 
 **21. ¿Qué es el puntero this en C++?**
 
-El puntero this, se refiere a un tipo de puntero que se usa para referenciar al objeto que llama a sus funciones pertenecientes a la familia del objeto. Una clase de objetos posee una única copia de funciones que se pueden aplicar sobre ellos, si se quiere aplicar una de estas funciones sobre el objeto que la llama se puede utilizar el puntero this como referencia a sí mismo. Por ejemplo, un objeto con una función para comparar objetos de su mismo tipo. Dentro de esta función se usa el puntero this para referenciar los datos del objeto que la llama y así se compara con los de otros.
+El puntero this, se refiere a un tipo de puntero que se usa para referenciar al objeto que llama a sus funciones pertenecientes a la familia del objeto. Una clase de objetos posee una única copia de funciones que se pueden aplicar sobre ellos, si se quiere aplicar una de estas funciones sobre el objeto que la llama se puede utilizar el puntero this como referencia a sí mismo [4]. Por ejemplo, un objeto con una función para comparar objetos de su mismo tipo. Dentro de esta función se usa el puntero this para referenciar los datos del objeto que la llama y así se compara con los de otros.
 
 **22. ¿Qué es un puntero nullptr?**
 
-El puntero nullptr es un puntero que referencia a un valor nulo, es un puntero ya definido y no puede ser reasignado pues es constante. Es útil en casos donde NULL genera problemas como al usar funciones sobrecargadas con enteros y punteros, en cuyo caso usar NULL causaría que el compilador use la función para enteros y no la de punteros.
+El puntero nullptr es un puntero que referencia a un valor nulo, es un puntero ya definido y no puede ser reasignado pues es constante. Es útil en casos donde NULL genera problemas como al usar funciones sobrecargadas con enteros y punteros, en cuyo caso usar NULL causaría que el compilador use la función para enteros y no la de punteros. [5]
 
 **23. ¿Cuál es la diferencia entre un arreglo y una lista en C++?**
 
-Un arreglo está definido por un espacio de memoria contigua definido al momento de la creación del arreglo, esta no se puede cambiar por lo que un arreglo se mantiene del mismo tamaño y solo divide su memoria en cada elemento. En cambio, una lista es un conjunto de elementos, unidos por medio de referencias, que se encuentran en distintos lugares de memoria. Esto causa diferencias en como se modifican, iteran y utilizan.
+Un arreglo está definido por un espacio de memoria contigua definido al momento de la creación del arreglo, esta no se puede cambiar por lo que un arreglo se mantiene del mismo tamaño y solo divide su memoria en cada elemento. En cambio, una lista es un conjunto de elementos, unidos por medio de referencias, que se encuentran en distintos lugares de memoria. Esto causa diferencias en como se modifican, iteran y utilizan. [6]
 
 **24. ¿Qué es una función prototipo?**
 
@@ -131,13 +131,13 @@ Una función prototipo es cuando se declara una función previo a su definición
 
 **25. ¿Investigue qué es un memory leak?**
 
-Un memory leak o fuga de memoria es un fenómeno donde un programa no libera la memoria que utiliza en sus funciones al finalizar, lo cual causa que la memoria se desperdicie. Esto tiene consecuencias variables, desde ser algo despreciable hasta causar el colapso completo del sistema en donde opera. Esto ocurre cuando la memoria alocada por un programa nunca se libera por ejemplo debido a que la estructura de condicionales no lleva a su liberación o que nunca se establece un punto donde se libera la memoria.
+Un memory leak o fuga de memoria es un fenómeno donde un programa no libera la memoria que utiliza en sus funciones al finalizar, lo cual causa que la memoria se desperdicie. Esto tiene consecuencias variables, desde ser algo despreciable hasta causar el colapso completo del sistema en donde opera. Esto ocurre cuando la memoria alocada por un programa nunca se libera por ejemplo debido a que la estructura de condicionales no lleva a su liberación o que nunca se establece un punto donde se libera la memoria. [7]
 
 # Parte teórica Makefile
 
 **1. ¿Qué suelen contener las variables CC, CFLAGS, CXXFLAGS y LDFLAGS en un makefile?**
 
-La variables son usadas para definir partes de las instrucciones del makefile de una manera organizada. La variable CC contiene la referencia al compilador a usar cuando se emplean makefiles a programas escritos en C. También para el caso de programas escritos en C se emplea la variable CFLAGS se usa para establecer “flags” u opciones de compilación a usar (por ejemplo -Wall para mostrar todas las alertas). Por otra parte, si se genera un makefile para programas escritos en C++ las “flags” u opciones de compilación se definen en la variable CXXFLAGS. Finalmente, la variable LDFLAGS sirve para incluir más opciones que el linker asociado al proceso del compilador emplee, un ejemplo de esto es la opción -L para que el linker busque librerías en la carpeta de compilación.
+La variables son usadas para definir partes de las instrucciones del makefile de una manera organizada. La variable CC contiene la referencia al compilador a usar cuando se emplean makefiles a programas escritos en C. También para el caso de programas escritos en C se emplea la variable CFLAGS se usa para establecer “flags” u opciones de compilación a usar (por ejemplo -Wall para mostrar todas las alertas). Por otra parte, si se genera un makefile para programas escritos en C++ las “flags” u opciones de compilación se definen en la variable CXXFLAGS [8]. Finalmente, la variable LDFLAGS sirve para incluir más opciones que el linker asociado al proceso del compilador emplee, un ejemplo de esto es la opción -L para que el linker busque librerías en la carpeta de compilación.
 
 **2. ¿De qué se compone una regla en un Makefile?**
 
@@ -153,7 +153,7 @@ Un target es el resultado de los comandos realizados por un Makefile. Un ejemplo
 
 **4. ¿Para qué se utiliza la bandera -I, -c y -o del compilador gcc?**
 
-La bandera -I permite incluir un directorio de header files a la hora de compilar el programa, es necesaria si se compila un script que incluye funciones de un archivo header en un directorio específico. La bandera -c le indica al compilador que debe compilar el archivo dado, pero no debe ejecutar el proceso del linker, así se obtiene un object file sin conectarlo con las librerías. Finalmente, la bandera/opción -o indica que la salida de un proceso de compilado se guarde en el archivo posterior a la bandera (ej. -o main.exe).
+La bandera -I permite incluir un directorio de header files a la hora de compilar el programa, es necesaria si se compila un script que incluye funciones de un archivo header en un directorio específico [9]. La bandera -c le indica al compilador que debe compilar el archivo dado, pero no debe ejecutar el proceso del linker, así se obtiene un object file sin conectarlo con las librerías [10]. Finalmente, la bandera/opción -o indica que la salida de un proceso de compilado se guarde en el archivo posterior a la bandera (ej. -o main.exe).
 
 **5. ¿Cómo se definen y se utilizan las variables en un Makefile? ¿Qué utilidad tienen?**
 
@@ -174,22 +174,22 @@ La palabra clave .PHONY se utiliza para indicar que un target dado no es un arch
 
 *Links a sitios consultados:*
 
-https://en.wikibooks.org/wiki/C%2B%2B_Programming/Structures
+[1] https://cplusplus.com/reference/string/string/
 
-https://www.geeksforgeeks.org/this-pointer-in-c/
+[2] https://en.wikibooks.org/wiki/C%2B%2B_Programming/Structures
 
-https://cplusplus.com/reference/string/string/
+[3] https://faculty.cs.niu.edu/~mcmahon/CS241/Notes/storage_class.html
 
-https://faculty.cs.niu.edu/~mcmahon/CS241/Notes/storage_class.html
+[4] https://www.geeksforgeeks.org/this-pointer-in-c/
 
-https://www.geeksforgeeks.org/understanding-nullptr-c/
+[5] https://www.geeksforgeeks.org/understanding-nullptr-c/
 
-https://cplusplus.com/reference/list/list/
+[6] https://cplusplus.com/reference/list/list/
 
-https://owasp.org/www-community/vulnerabilities/Memory_leak#:~:text=A%20memory%20leak%20is%20an,depend%20on%20the%20application%20itself.
+[7] https://owasp.org/www-community/vulnerabilities/Memory_leak#:~:text=A%20memory%20leak%20is%20an,depend%20on%20the%20application%20itself. 
 
-https://earthly.dev/blog/make-flags/#:~:text=c%20main.c-,LDFLAGS,%2C%20using%20the%20%2DL%20option.
+[8] https://earthly.dev/blog/make-flags/#:~:text=c%20main.c-,LDFLAGS,%2C%20using%20the%20%2DL%20option.
 
-https://www.rapidtables.com/code/linux/gcc/gcc-i.html
+[9] https://www.rapidtables.com/code/linux/gcc/gcc-i.html
 
-https://linux.die.net/man/1/gcc
+[10] https://linux.die.net/man/1/gcc
