@@ -1,6 +1,6 @@
 # Instrucciones de ejecución
 
-# Parte Teórica
+# Parte Teórica C++
 
 **1. ¿Cuál es la principal diferencia entre C y C++?**
 
@@ -133,6 +133,45 @@ Una función prototipo es cuando se declara una función previo a su definición
 
 Un memory leak o fuga de memoria es un fenómeno donde un programa no libera la memoria que utiliza en sus funciones al finalizar, lo cual causa que la memoria se desperdicie. Esto tiene consecuencias variables, desde ser algo despreciable hasta causar el colapso completo del sistema en donde opera. Esto ocurre cuando la memoria alocada por un programa nunca se libera por ejemplo debido a que la estructura de condicionales no lleva a su liberación o que nunca se establece un punto donde se libera la memoria.
 
+# Parte teórica Makefile
+
+**1. ¿Qué suelen contener las variables CC, CFLAGS, CXXFLAGS y LDFLAGS en un makefile?**
+
+La variables son usadas para definir partes de las instrucciones del makefile de una manera organizada. La variable CC contiene la referencia al compilador a usar cuando se emplean makefiles a programas escritos en C. También para el caso de programas escritos en C se emplea la variable CFLAGS se usa para establecer “flags” u opciones de compilación a usar (por ejemplo -Wall para mostrar todas las alertas). Por otra parte, si se genera un makefile para programas escritos en C++ las “flags” u opciones de compilación se definen en la variable CXXFLAGS. Finalmente, la variable LDFLAGS sirve para incluir más opciones que el linker asociado al proceso del compilador emplee, un ejemplo de esto es la opción -L para que el linker busque librerías en la carpeta de compilación.
+
+**2. ¿De qué se compone una regla en un Makefile?**
+
+Una regla se compone de un target, las dependencias del target y los comandos necesarios para construir el target. Se construyen de la siguiente manera:
+```
+target: dependencia1 dependencia2 dependencia3
+	comandos 
+```
+
+**3. Defina qué es un target y cómo se relaciona con sus prerequisitos.**
+
+Un target es el resultado de los comandos realizados por un Makefile. Un ejemplo de esto es un archivo .exe creado a partir de las instrucciones de un makefile. Los targets poseen dependencias que son necesarias para cumplir las instrucciones y llegar al target, si estas son alteradas el makefile toma la tarea de actualizar el target por medio de los comandos.
+
+**4. ¿Para qué se utiliza la bandera -I, -c y -o del compilador gcc?**
+
+La bandera -I permite incluir un directorio de header files a la hora de compilar el programa, es necesaria si se compila un script que incluye funciones de un archivo header en un directorio específico. La bandera -c le indica al compilador que debe compilar el archivo dado, pero no debe ejecutar el proceso del linker, así se obtiene un object file sin conectarlo con las librerías. Finalmente, la bandera/opción -o indica que la salida de un proceso de compilado se guarde en el archivo posterior a la bandera (ej. -o main.exe).
+
+**5. ¿Cómo se definen y se utilizan las variables en un Makefile? ¿Qué utilidad tienen?**
+
+Las variables en un Makefile se definen de forma similar a otros lenguajes de programación como python o C++ (ej. CXX = g++). Se utilizan para definir las partes de las instrucciones que construyen los targets en un Makefile, y son de gran utilidad para mantener la estructura del Makefile ordenada, ya sea para la lectura o para la modificación de este.
+
+**6. ¿Qué utilidad tiene un @ en un Makefile?**
+
+El símbolo @ se emplea para referenciar el target dentro de una instrucción del mismo. Por ejemplo, en este script se debe incluir el nombre de un target genérico y se emplea el @:
+
+```
+%.exe: %.cpp 
+    $(CXX) $(CXXFLAGS) -c $< -o $@
+```
+
+**7. ¿Para qué se utiliza .PHONY en un Makefile?** 
+
+La palabra clave .PHONY se utiliza para indicar que un target dado no es un archivo por crear/actualizar, sino una acción. Esto es importante para evitar confusión para el makefile y para que el makefile no tome el .PHONY como algo que no requiere ser actualizado y por ende no lo ejecute.
+
 *Links a sitios consultados:*
 
 https://en.wikibooks.org/wiki/C%2B%2B_Programming/Structures
@@ -148,3 +187,9 @@ https://www.geeksforgeeks.org/understanding-nullptr-c/
 https://cplusplus.com/reference/list/list/
 
 https://owasp.org/www-community/vulnerabilities/Memory_leak#:~:text=A%20memory%20leak%20is%20an,depend%20on%20the%20application%20itself.
+
+https://earthly.dev/blog/make-flags/#:~:text=c%20main.c-,LDFLAGS,%2C%20using%20the%20%2DL%20option.
+
+https://www.rapidtables.com/code/linux/gcc/gcc-i.html
+
+https://linux.die.net/man/1/gcc
