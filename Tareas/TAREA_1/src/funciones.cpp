@@ -2,7 +2,7 @@
 
 int mostrarMenu(){
     // Se imprime el menu.
-    cout << "Bienvenid@ al juego de adivinar un numero.\n";
+    cout << "\nBienvenid@ al juego de adivinar un numero.\n";
     cout << "Las dificultades disponibles: \n";
     cout << "1. Pistas segun mayor o menor (Facil).\n";
     cout << "2. Pistas estilo papa caliente (Dificil).\n ";
@@ -11,13 +11,13 @@ int mostrarMenu(){
     cout << "\nEscoja la dificultad: ";
     int opcion;
     cin >> opcion;
-    if (opcion != 1 or opcion != 2){
+
+    if ((opcion != 1) and (opcion != 2)){
         cout << "Opcion no valida. Inicie el programa de nuevo.";
         exit(0);
     }
     return opcion;
 }
-
 
 void procesarOpcion(int limInferior, int limSuperior, int opcion){
     // Se establece la cantidad máxima de intentos y un contador de intentos.
@@ -45,12 +45,10 @@ void procesarOpcion(int limInferior, int limSuperior, int opcion){
     mensajePerdedor();
 }
 
-
 int numRandom(int limInferior, int limSuperior){
     srand(time(0));
     return ((rand() % limSuperior) + limInferior); // Se tomó referencia para este método de: https://shorturl.at/rKOPT
 }
-
 
 void pista(int guess, int buscado, int opcion, int tamañoIntervalo){
     switch (opcion)
@@ -64,13 +62,12 @@ void pista(int guess, int buscado, int opcion, int tamañoIntervalo){
         break;
     
     case 2:
-        string temperatura = calcularTemperatura(tamañoIntervalo, guess, buscado);
-        cout << "Su numero anda: " << temperatura << endl;
+        calcularTemperatura(tamañoIntervalo, guess, buscado);
         break;
     }
 }
 
-string calcularTemperatura(int tamañoIntervalo, int guess, int buscado){
+void calcularTemperatura(int tamañoIntervalo, int guess, int buscado){
     /*
     Si se divide el tamaño del intervalo en 7 secciones, se puede tomar la seccion 
     que contiene al numero guess como "hirviendo", la siguiente mas cercana como caliente 
@@ -91,15 +88,15 @@ string calcularTemperatura(int tamañoIntervalo, int guess, int buscado){
 
     if (posicion <= 0.5)
     {
-        return "hirviendo";
+        cout << "Su numero esta: hirviendo." << endl;
     } else if (posicion <= 1.5)
     {
-        return "caliente";
+        cout << "Su numero esta: caliente." << endl;
     } else if (posicion <= 2.5)
     {
-        return "frio";
+        cout << "Su numero esta: frio." << endl;
     } else {
-        return "congelado";
+        cout << "Su numero esta: congelado." << endl;
     }
 }
 
