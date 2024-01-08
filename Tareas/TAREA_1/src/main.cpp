@@ -1,11 +1,17 @@
 #include "funciones.hpp"
 
-int main(int argc, char* argv[]){
-    // Se encuentran los límites del intervalo y se hacen enteros.
-    int limInferior = stoi(argv[1]);
-    int limSuperior = stoi(argv[2]);
+int main(){
+    // Se declara un struct de tipo DatosJuego "Datos" para contener a definir. 
+    DatosJuego Datos;
 
-    int opcion = mostrarMenu();
-    procesarOpcion(limInferior, limSuperior, opcion);
+    while (1)
+    {
+        // Se imprime el menu y se piden los datos.
+        Datos = mostrarMenu();
+
+        // Se procesan las opciones con los datos guardados.
+        procesarOpcion(Datos);
+    }
+    
     return 0;
 }
