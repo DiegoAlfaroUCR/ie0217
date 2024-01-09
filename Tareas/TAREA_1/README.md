@@ -1,4 +1,43 @@
 # Instrucciones de ejecución
+La parte práctica de esta tarea incluye la elaboración de un juego para adivinar un número al azar (escrito en C++) y un Makefile que permita ejecutarlo. El código fuente se encuentra en la carpeta [src](/src/) mientras que el archivo [Makefile](/Makefile) se encuentra en esta carpeta. Para iniciar el programa se debe primero compilar y correr, para esto basta con correr el comando `Make all` en el directorio presente (ie0217\Tareas\TAREA_1).
+
+Windows (depende de su configuración de mingw):
+```
+mingw32-make all
+```
+
+Linux:
+```
+make all
+```
+En caso de solo requerir la construcción del ejecutable (adivina.exe en el caso de Windows) se puede correr `make build`. Alternativamente, para solo iniciar el programa ya compilado puede usar el comando `make run`.
+
+Windows:
+```
+mingw32-make build      \\      mingw32-make run
+```
+
+Linux:
+```
+make build              \\      make run
+```
+
+Finalmente, para limpiar el directorio de archivos generados, ingrese el comando `make clean`
+
+Windows:
+```
+mingw32-make clean
+```
+
+Linux:
+```
+make clean
+```
+
+# Instrucciones de juego.
+
+Al inicar el juego el sistema imprime opciones en la terminal, en la cual debe ingresar números enteros según corresponda. El objetivo es ingresar números en la terminal para adivinar un número aleatorio. Se presentan dos opciones de dificultad, la primera muestra si el número a adivinar es mayor o menor al adivinado; la segunda si el número adivinado está congelado, frío, caliente o hirviendo comparado al número a adivinar. Finalmente, se le pide ingresar el intervalo de números donde se puede generar el número (con límites inclusive). Una vez se adivina el número el programa se finaliza, en caso de gastar los intentos disponibles perderá y se reinicia el programa.
+
 
 # Parte Teórica C++
 
