@@ -1,5 +1,5 @@
 # Instrucciones de ejecución
-La parte práctica de esta tarea incluye la elaboración de un juego para adivinar un número al azar (escrito en C++) y un Makefile que permita ejecutarlo. El código fuente se encuentra en la carpeta [src](/src/) mientras que el archivo [Makefile](/Makefile) se encuentra en esta carpeta. Para iniciar el programa se debe primero compilar y correr, para esto basta con correr el comando `Make all` en el directorio presente (ie0217\Tareas\TAREA_1).
+La parte práctica de esta tarea incluye la elaboración de un juego para adivinar un número al azar (escrito en C++) y un Makefile que permita ejecutarlo. El código fuente se encuentra en la carpeta [src](/Tareas/TAREA_1/src/) mientras que el archivo [Makefile](/Tareas/TAREA_1/Makefile) se encuentra en esta carpeta. Para iniciar el programa se debe primero compilar y correr, para esto basta con correr el comando `Make all` en el directorio presente (ie0217\Tareas\TAREA_1).
 
 Windows (depende de su configuración de mingw):
 ```
