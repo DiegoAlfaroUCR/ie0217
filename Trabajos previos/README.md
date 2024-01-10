@@ -4,3 +4,6 @@ Aquí se encuentran los archivos estudiados en cada sesión de teoría del curso
 * [Sesión 1](/Trabajos%20previos/Sesión%201/)
 * [Sesión 2](/Trabajos%20previos/Sesión%202/)
 * [Sesión 3](/Trabajos%20previos/Sesión%203/)
+
+## Previo #2:
+* [Sesión 4](/Trabajos%20previos/Sesión_4/)
