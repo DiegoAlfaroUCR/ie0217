@@ -2,8 +2,10 @@
 
 void MaterialLectura::setLectura(){
     cout << "Ingrese el nombre de la Editorial: ";
-    cin >> editorial;
+    getline(cin>>ws, editorial);
 
     cout << "Ingrese la cantidad de hojas: ";
     cin >> cantidadHojas;
+
+    cout << endl;
 }

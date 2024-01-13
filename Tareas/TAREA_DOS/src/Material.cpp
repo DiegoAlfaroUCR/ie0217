@@ -11,17 +11,19 @@ void Material::setGeneral() {
     }
     
     cout << "Ingrese el titulo " << pronombre << this->tipo << ": ";
-    cin >> titulo;
+    getline(cin>>ws, titulo);
 
     cout << "Ingrese el autor " << pronombre << this->tipo << ": ";
-    cin >> autor;
+    getline(cin>>ws, autor);
 
     cout << "Ingrese el genero " << pronombre << this->tipo << ": ";
-    cin >> genero;
+    getline(cin>>ws, genero);
 
     cout << "Ingrese el precio " << pronombre << this->tipo << ": ";
     cin >> precio;
 
-    cout << "Ingrese el estado " << pronombre << this->tipo << ": ";
+    cout << "Ingrese el estado " << pronombre << this->tipo << " (disponible, prestado o reservado): ";
     cin >> estado;
+
+    cout << endl;
 }
