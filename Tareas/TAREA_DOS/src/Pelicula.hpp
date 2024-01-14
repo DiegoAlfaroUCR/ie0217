@@ -5,7 +5,7 @@
 
 class Pelicula : public MaterialAudiovisual {
     public:
-        Pelicula();
+        void crearPelicula();
         void tamaño();
         void mostrarInfo();
     private:

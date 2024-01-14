@@ -1,6 +1,6 @@
 #include "Noticia.hpp"
 
-Noticia::Noticia(){
+void Noticia::crearNoticia(){
     tipo = "Noticia";
     setGeneral();
     setLectura();

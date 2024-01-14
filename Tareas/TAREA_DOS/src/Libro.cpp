@@ -1,6 +1,6 @@
 #include "Libro.hpp"
 
-Libro::Libro(){
+void Libro::crearLibro(){
     tipo = "Libro";
     setGeneral();
     setLectura();

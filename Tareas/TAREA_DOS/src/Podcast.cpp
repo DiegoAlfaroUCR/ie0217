@@ -1,6 +1,6 @@
 #include "Podcast.hpp"
 
-Podcast::Podcast(){
+void Podcast::crearPodcast(){
     tipo = "Podcast";
     setGeneral();
     setVisual();

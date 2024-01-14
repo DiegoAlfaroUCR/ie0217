@@ -11,7 +11,7 @@ class Material {
     public:
         void setGeneral(); // TALVEZ SE DEBA TENER EN PROTECTED
         void mostrarGeneral();
-    protected:
+    //protected: Cambio provisional.
         // Atributos generales.
         string titulo;
         string estado;

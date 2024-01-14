@@ -5,7 +5,7 @@
 
 class Podcast : public MaterialAudiovisual {
     public:
-        Podcast();
+        void crearPodcast();
         void tamaño();
         void mostrarInfo();
     private:

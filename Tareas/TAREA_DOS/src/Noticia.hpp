@@ -5,7 +5,7 @@
 
 class Noticia : public MaterialLectura {
     public:
-        Noticia();
+        void crearNoticia();
         void tamaño();
         void mostrarInfo();
     private:

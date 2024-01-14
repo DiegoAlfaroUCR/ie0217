@@ -1,6 +1,6 @@
 #include "Pelicula.hpp"
 
-Pelicula::Pelicula(){
+void Pelicula::crearPelicula(){
     tipo = "Pelicula";
     setGeneral();
     setVisual();

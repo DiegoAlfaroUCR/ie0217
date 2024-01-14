@@ -5,7 +5,7 @@
 
 class Libro : public MaterialLectura {
     public:
-        Libro();
+        void crearLibro();
         void tamaño();
         void mostrarInfo();
     private:
