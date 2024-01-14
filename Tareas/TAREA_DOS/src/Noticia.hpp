@@ -1,11 +1,11 @@
-#ifndef LIBRO_HPP
-#define LIBRO_HPP
+#ifndef NOTICIA_HPP
+#define NOTICIA_HPP
 
 #include "MaterialLectura.hpp"
 
-class Libro : public MaterialLectura {
+class Noticia : public MaterialLectura {
     public:
-        Libro();
+        Noticia();
         void tamaño();
         void mostrarInfo();
     private:

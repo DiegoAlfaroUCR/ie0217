@@ -22,8 +22,23 @@ void Material::setGeneral() {
     cout << "Ingrese el precio " << pronombre << this->tipo << ": ";
     cin >> precio;
 
-    cout << "Ingrese el estado " << pronombre << this->tipo << " (disponible, prestado o reservado): ";
+    cout << "Ingrese el estado " << pronombre << this->tipo << " (disponible, prestad@ o reservad@): ";
     cin >> estado;
 
     cout << endl;
+}
+
+void Material::mostrarGeneral(){
+    string pronombre = "de la ";
+
+    if (tipo == "Libro" || tipo == "Podcast")
+    {
+        pronombre = "del ";
+    }
+    cout << "-----Informacion " << pronombre << tipo << "-----" << endl;
+    cout << "Titulo: " << titulo << endl;
+    cout << "Autor: " << autor << endl;
+    cout << "Genero: " << genero << endl;
+    cout << "Precio: " << precio << endl;
+    cout << "Estado: " << estado << endl;
 }

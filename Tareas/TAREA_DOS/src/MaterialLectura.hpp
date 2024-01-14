@@ -6,6 +6,7 @@
 class MaterialLectura : public Material{
     public:
         void setLectura();
+        void mostrarLectura();
     protected:
         string editorial;
         int cantidadHojas;

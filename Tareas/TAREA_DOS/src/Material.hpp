@@ -10,6 +10,7 @@ using namespace std;
 class Material {
     public:
         void setGeneral(); // TALVEZ SE DEBA TENER EN PROTECTED
+        void mostrarGeneral();
     protected:
         // Atributos generales.
         string titulo;

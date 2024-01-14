@@ -9,3 +9,8 @@ void MaterialLectura::setLectura(){
 
     cout << endl;
 }
+
+void MaterialLectura::mostrarLectura(){
+    cout << "Editorial: " << editorial << endl;
+    cout << "Cantidad de hojas: " << cantidadHojas << endl << endl;
+}

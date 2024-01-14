@@ -21,16 +21,19 @@ void Libro::tamaño(){
     } else if (cantidadHojas < 200)
     {
         cout << "El libro '"<< titulo <<"' es mediano. "<< endl;
-    } else if (200 < cantidadHojas)
+    } else if (200 <= cantidadHojas)
     {
         cout << "El libro '"<< titulo <<"' es largo. "<< endl;
     }
 }
 
-void Libro::info(){
-    cout << "Mostrando resumen del Libro '" << titulo << "' :" << endl;
-    cout << resumen << endl;
+void Libro::mostrarInfo(){
+    mostrarGeneral();
+    mostrarLectura();
 
-    cout << "Material relacionado a '" << titulo << "' que le podría gustar:" << endl;
+    cout << "Mostrando resumen del Libro '" << titulo << "':" << endl;
+    cout << resumen << endl << endl;
+
+    cout << "Material relacionado a '" << titulo << "' que le podria gustar:" << endl;
     cout << relacionado << endl;
 }
