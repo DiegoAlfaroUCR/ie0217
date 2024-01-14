@@ -31,6 +31,7 @@ void Noticia::mostrarInfo(){
     mostrarGeneral();
     mostrarLectura();
 
+    tamaño();
     cout << "Mostrando resumen de la Noticia '" << titulo << "':" << endl;
     cout << resumen << endl << endl;
 

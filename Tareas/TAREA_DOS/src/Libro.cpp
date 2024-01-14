@@ -31,6 +31,7 @@ void Libro::mostrarInfo(){
     mostrarGeneral();
     mostrarLectura();
 
+    tamaño();
     cout << "Mostrando resumen del Libro '" << titulo << "':" << endl;
     cout << resumen << endl << endl;
 
