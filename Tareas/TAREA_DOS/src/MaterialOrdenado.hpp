@@ -11,11 +11,13 @@ class MaterialOrdenado : public Libro, public Noticia, public Podcast, public Pe
         void agregar();
         void eliminar();
         void buscar();
-    private:
+        void liberar();
         vector<Libro*> Libros;
         vector<Noticia*> Noticias;
         vector<Podcast*> Podcasts;
         vector<Pelicula*> Peliculas;
+    protected:
+        void buscarNombre();
 };
 
 #endif

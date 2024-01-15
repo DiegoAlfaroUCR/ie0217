@@ -1,4 +1,5 @@
 #include "MaterialOrdenado.hpp"
+#include <algorithm>
 
 void MaterialOrdenado::agregar(){
     cout << endl << "-----Menu de creacion------" << endl;
@@ -43,6 +44,7 @@ void MaterialOrdenado::buscar(){
     cout << "2: Noticia" << endl;
     cout << "3: Pelicula" << endl;
     cout << "4: Podcast" << endl;
+    cout << "Opcion (5): Buscar por nombre" << endl;
     cout << "Elija el material por buscar: ";
     int opcion; cin >> opcion;
     cout << endl << "--------------------------------------------------" << endl;
@@ -72,11 +74,40 @@ void MaterialOrdenado::buscar(){
             cout << material->titulo << ", "<< material->autor << ", " << material->precio << endl;
         }
         break;}
+    case 5:{
+        buscarNombre();
+        break;
+    }
     default:{
         cout << "Opcion no válida." << endl;
         break;}
     }
     cout << "--------------------------------------------------" << endl;
+}
+
+void MaterialOrdenado::buscarNombre(){
+    cout << "Ingrese el nombre del material: ";
+    string nombre ; getline(cin>>ws, nombre);
+
+    for(auto &material: Libros){
+            if (material->titulo == nombre){
+                material->mostrarInfo();}
+    }
+
+    for(auto &material: Noticias){
+            if (material->titulo == nombre){
+                material->mostrarInfo();}
+    }
+
+    for(auto &material: Podcasts){
+            if (material->titulo == nombre){
+                material->mostrarInfo();}
+    }
+
+    for(auto &material: Peliculas){
+            if (material->titulo == nombre){
+                material->mostrarInfo();}
+    }
 }
 
 void MaterialOrdenado::eliminar(){
@@ -97,7 +128,10 @@ void MaterialOrdenado::eliminar(){
     case 1:{
         for(auto &material: Libros){
             if (material->titulo == nombre){
+                auto indice = find(Libros.begin(), Libros.end(), material);
                 delete material;
+                Libros.erase(indice);
+    
                 cout << "Libro '" << nombre << "' eliminado exitosamente. " << endl;
             } else {cout << "Nombre a eliminar dado no encontrado." << endl;};
         }
@@ -106,7 +140,10 @@ void MaterialOrdenado::eliminar(){
     case 2:{
         for(auto &material: Noticias){
             if (material->titulo == nombre){
+                auto indice = find(Noticias.begin(), Noticias.end(), material);
                 delete material;
+                Noticias.erase(indice);
+
                 cout << "Noticia '" << nombre << "' eliminada exitosamente. " << endl;
             } else {cout << "Nombre a eliminar dado no encontrado." << endl;};
         }
@@ -116,7 +153,10 @@ void MaterialOrdenado::eliminar(){
         cout << "Lista de peliculas por titulo, autor y precio: " << endl;
         for(auto &material: Peliculas){
             if (material->titulo == nombre){
+                auto indice = find(Peliculas.begin(), Peliculas.end(), material);
                 delete material;
+                Peliculas.erase(indice);
+
                 cout << "Pelicula '" << nombre << "' eliminada exitosamente. " << endl;
             } else {cout << "Nombre a eliminar dado no encontrado." << endl;};
         }
@@ -126,7 +166,10 @@ void MaterialOrdenado::eliminar(){
         cout << "Lista de podcasts por titulo, autor y precio: " << endl;
         for(auto &material: Podcasts){
             if (material->titulo == nombre){
+                auto indice = find(Podcasts.begin(), Podcasts.end(), material);
                 delete material;
+                Podcasts.erase(indice);
+
                 cout << "Podcast '" << nombre << "' eliminado exitosamente. " << endl;
             } else {cout << "Nombre a eliminar dado no encontrado." << endl;};
         }
@@ -136,4 +179,28 @@ void MaterialOrdenado::eliminar(){
         cout << "Opcion no válida." << endl;
         break;}
     }
+}
+
+void MaterialOrdenado::liberar(){
+    for (auto &material: Libros)
+    {
+        delete material;
+    }
+
+    for (auto &material: Noticias)
+    {
+        delete material;
+    }
+
+    for (auto &material: Peliculas)
+    {
+        delete material;
+    }
+
+    for (auto &material: Podcasts)
+    {
+        delete material;
+    }
+
+    cout << "Memoria liberada." << endl;
 }
