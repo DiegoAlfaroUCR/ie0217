@@ -39,6 +39,7 @@ void MaterialPrecio::obtenerDatos(){
 }
 
 void MaterialPrecio::ordenar(){
+    obtenerDatos();
     cout << "Ordenar en orden ascendiente (1) o descendiente (2) ?" << endl;
     cout << "Ingrese la opcion: ";
     int opcion; cin >> opcion; 
@@ -82,7 +83,7 @@ void MaterialPrecio::ordenar(){
 }
 
 void MaterialPrecio::imprimir(){
-    cout << "Materiales ordenados: " << endl;
+    cout << endl << "Materiales ordenados: " << endl;
     cout << "---------------------------------------------------------------------" << endl;
     for (auto &elemento : datos)
     {

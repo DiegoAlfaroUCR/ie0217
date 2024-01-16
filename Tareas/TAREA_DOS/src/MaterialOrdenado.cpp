@@ -1,5 +1,4 @@
 #include "MaterialOrdenado.hpp"
-#include <algorithm>
 
 void MaterialOrdenado::agregar(){
     cout << endl << "-----Menu de creacion------" << endl;
@@ -47,31 +46,39 @@ void MaterialOrdenado::buscar(){
     cout << "Opcion (5): Buscar por nombre" << endl;
     cout << "Elija el material por buscar: ";
     int opcion; cin >> opcion;
-    cout << endl << "--------------------------------------------------" << endl;
+    cout << endl << "-----------------------------------------------------------" << endl;
     switch (opcion)
     {
     case 1:{
-        cout << "Lista de libros por titulo, autor y precio: " << endl;
+        cout << "Lista de libros: " << endl;
         for(auto &material: Libros){
-            cout << material->titulo << ", "<< material->autor << ", " << material->precio << endl;
+            cout << "Titulo: " << left << setw(15) << material->titulo;
+            cout << "Autor: " << left << setw(15) << material->autor;
+            cout << "Precio: " << material->precio << endl;
         }
         break;}
     case 2:{
-        cout << "Lista de noticias por titulo, autor y precio: " << endl;
+        cout << "Lista de noticias: " << endl;
         for(auto &material: Noticias){
-            cout << material->titulo << ", "<< material->autor << ", " << material->precio << endl;
+            cout << "Titulo: " << left << setw(15) << material->titulo;
+            cout << "Autor: " << left << setw(15) << material->autor;
+            cout << "Precio: " << material->precio << endl;
         }
         break;}
     case 3:{
-        cout << "Lista de peliculas por titulo, autor y precio: " << endl;
+        cout << "Lista de peliculas: " << endl;
         for(auto &material: Peliculas){
-            cout << material->titulo << ", "<< material->autor << ", " << material->precio << endl;
+            cout << "Titulo: " << left << setw(15) << material->titulo;
+            cout << "Autor: " << left << setw(15) << material->autor;
+            cout << "Precio: " << material->precio << endl;
         }
         break;}
     case 4:{
-        cout << "Lista de podcasts por titulo, autor y precio: " << endl;
+        cout << "Lista de podcasts: " << endl;
         for(auto &material: Podcasts){
-            cout << material->titulo << ", "<< material->autor << ", " << material->precio << endl;
+            cout << "Titulo: " << left << setw(15) << material->titulo;
+            cout << "Autor: " << left << setw(15) << material->autor;
+            cout << "Precio: " << material->precio << endl;
         }
         break;}
     case 5:{
@@ -82,7 +89,7 @@ void MaterialOrdenado::buscar(){
         cout << "Opcion no válida." << endl;
         break;}
     }
-    cout << "--------------------------------------------------" << endl;
+    cout << "-----------------------------------------------------------" << endl;
 }
 
 void MaterialOrdenado::buscarNombre(){
@@ -123,6 +130,7 @@ void MaterialOrdenado::eliminar(){
     string nombre;
     getline(cin>>ws, nombre);
 
+    bool encontrado = false;
     switch (opcion)
     {
     case 1:{
@@ -133,7 +141,8 @@ void MaterialOrdenado::eliminar(){
                 Libros.erase(indice);
     
                 cout << "Libro '" << nombre << "' eliminado exitosamente. " << endl;
-            } else {cout << "Nombre a eliminar dado no encontrado." << endl;};
+                encontrado = true;
+            }
         }
         break;}
 
@@ -145,7 +154,8 @@ void MaterialOrdenado::eliminar(){
                 Noticias.erase(indice);
 
                 cout << "Noticia '" << nombre << "' eliminada exitosamente. " << endl;
-            } else {cout << "Nombre a eliminar dado no encontrado." << endl;};
+                encontrado = true;
+            }
         }
         break;}
 
@@ -158,7 +168,8 @@ void MaterialOrdenado::eliminar(){
                 Peliculas.erase(indice);
 
                 cout << "Pelicula '" << nombre << "' eliminada exitosamente. " << endl;
-            } else {cout << "Nombre a eliminar dado no encontrado." << endl;};
+                encontrado = true;
+            }
         }
         break;}
 
@@ -171,7 +182,8 @@ void MaterialOrdenado::eliminar(){
                 Podcasts.erase(indice);
 
                 cout << "Podcast '" << nombre << "' eliminado exitosamente. " << endl;
-            } else {cout << "Nombre a eliminar dado no encontrado." << endl;};
+                encontrado = true;
+            }
         }
         break;}
 
@@ -179,6 +191,12 @@ void MaterialOrdenado::eliminar(){
         cout << "Opcion no válida." << endl;
         break;}
     }
+
+    if (!encontrado)
+    {
+        cout << "Nombre a eliminar dado no encontrado." << endl;
+    }
+    
 }
 
 void MaterialOrdenado::liberar(){
