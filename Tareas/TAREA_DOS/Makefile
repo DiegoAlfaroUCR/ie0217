@@ -10,6 +10,9 @@ else
 	SRCDIR = src/
 endif
 
+# Regla para compilar e iniciar el programa.
+all: build run
+
 # Nombre del programa de salida
 TARGET = programa.$(terminacion)
 
@@ -39,14 +42,11 @@ $(TARGET): $(OBJECTS)
 # Compila el ejecutable.
 build: $(TARGET)
 
-# Regla para limpiar los archivos generados.
-.PHONY: clean
-clean:
-	$(cleanCommand) $(TARGET) $(OBJECTS)
-
 # Regla para iniciar el programa
 run:
 	./$(TARGET)
 
-# Regla para compilar e iniciar el programa.
-all: build run
+# Regla para limpiar los archivos generados.
+.PHONY: clean
+clean:
+	$(cleanCommand) $(TARGET) $(OBJECTS)

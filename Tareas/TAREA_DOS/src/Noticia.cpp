@@ -1,5 +1,22 @@
+/**
+ * @file Noticia.cpp
+ * @author Diego Alfaro Segura (diego.alfarosegura@ucr.ac.cr)
+ * @brief Archivo fuente para métodos de Noticia.
+ * @version 0.1
+ * @date 2024-01-16
+ * 
+ * @copyright Copyright (c) 2024
+ * Licenciado bajo CC BY-NC-ND 4.0
+ */
+
 #include "Noticia.hpp"
 
+/**
+ * @brief Establece los valores de un objeto Noticia.
+ * 
+ * Este método define el tipo, información propia de Noticia y llama funciones setLectura() y setGeneral().
+ * 
+ */
 void Noticia::crearNoticia(){
     tipo = "Noticia";
     setGeneral();
@@ -14,6 +31,10 @@ void Noticia::crearNoticia(){
     cout << endl;
 }
 
+/**
+ * @brief Imprime el tamaño del Noticia según cantidadHojas.
+ * 
+ */
 void Noticia::tamaño(){
     if (cantidadHojas < 5)
     {
@@ -27,6 +48,12 @@ void Noticia::tamaño(){
     }
 }
 
+/**
+ * @brief Muestra información de objeto Noticia.
+ * 
+ * Imprime resumen, material relacionado y llama funciones mostrarGeneral() y mostrarLectura().
+ * 
+ */
 void Noticia::mostrarInfo(){
     mostrarGeneral();
     mostrarLectura();

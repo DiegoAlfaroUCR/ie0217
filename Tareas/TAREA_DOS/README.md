@@ -1,4 +1,41 @@
 # Instrucciones de ejecución
+La parte práctica de esta tarea incluye la elaboración de un sistema de guardado y búsqueda de materiales en C++, con su propio Makefile para ejecutarlo. El código fuente del programa se encuentra en el directorio [src](/Tareas/TAREA_DOS/src/) y el [Makefile](/Tareas/TAREA_DOS/Makefile) se encuentra en el directorio actual. Para compilar e iniciar el programa solo debe correr el comando make en la carpeta actual (ie0217\Tareas\TAREA_DOS).
+
+Windows (depende de su configuración de mingw):
+```
+mingw32-make
+```
+
+Linux:
+```
+make
+```
+
+En caso de solo requerir la construcción del ejecutable (adivina.exe en el caso de Windows) se puede correr `make build`. Alternativamente, para solo iniciar el programa ya compilado puede usar el comando `make run`.
+
+Windows:
+```
+mingw32-make build      \\      mingw32-make run
+```
+
+Linux:
+```
+make build              \\      make run
+```
+
+Finalmente, para limpiar el directorio de archivos generados, ingrese el comando `make clean`
+
+Windows:
+```
+mingw32-make clean
+```
+
+Linux:
+```
+make clean
+```
+# Instrucciones del programa.
+Al iniciar el programa se abre un menú con las opciones disponibles, debe ingresar el número para la opción que desea por medio de la terminal. En caso de ser preguntado por datos como Título o Autor, puede escribir el texto necesario (incluyendo espacios). Alternativamente, si se le pide un número no puede ingresar caracteres diferentes a números. Para mostrar la información completa de un material debe buscarlo por su nombre (opción 5 en menú de búsqueda). De ingresar opciones incorrectas o nombres incorrectos se volverá al menú principal. Para salir del programa seleccione la opción 5 del menú principal.
 
 # Parte Teórica
 

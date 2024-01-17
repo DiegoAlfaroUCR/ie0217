@@ -1,5 +1,22 @@
+/**
+ * @file Podcast.cpp
+ * @author Diego Alfaro Segura (diego.alfarosegura@ucr.ac.cr)
+ * @brief Archivo fuente de métodos de Podcast.
+ * @version 0.1
+ * @date 2024-01-16
+ * 
+ * @copyright Copyright (c) 2024
+ * Licenciado bajo CC BY-NC-ND 4.0
+ */
+
 #include "Podcast.hpp"
 
+/**
+ * @brief Establece los valores de un objeto Podcast.
+ * 
+ * Este método define el tipo, información propia de Podcast y llama funciones setLectura() y setGeneral().
+ * 
+ */
 void Podcast::crearPodcast(){
     tipo = "Podcast";
     setGeneral();
@@ -14,6 +31,10 @@ void Podcast::crearPodcast(){
     cout << endl;
 }
 
+/**
+ * @brief Imprime el tamaño de Podcast según duracion.
+ * 
+ */
 void Podcast::tamaño(){
     if (duracion < 30)
     {
@@ -27,6 +48,12 @@ void Podcast::tamaño(){
     }
 }
 
+/**
+ * @brief Muestra información de objeto Podcast.
+ * 
+ * Imprime resumen, material relacionado y llama funciones mostrarGeneral() y mostrarLectura().
+ * 
+ */
 void Podcast::mostrarInfo(){
     mostrarGeneral();
     mostrarVisual();

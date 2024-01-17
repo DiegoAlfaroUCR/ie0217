@@ -1,5 +1,22 @@
+/**
+ * @file Libro.cpp
+ * @author Diego Alfaro Segura (diego.alfarosegura@ucr.ac.cr)
+ * @brief Archivo fuente para métodos de Libro.
+ * @version 0.1
+ * @date 2024-01-15
+ * 
+ * @copyright Copyright (c) 2024
+ * Licenciado bajo CC BY-NC-ND 4.0
+ */
+
 #include "Libro.hpp"
 
+/**
+ * @brief Establece los valores de un objeto libro.
+ * 
+ * Este método define el tipo, información propia de Libro y llama funciones setLectura() y setGeneral().
+ * 
+ */
 void Libro::crearLibro(){
     tipo = "Libro";
     setGeneral();
@@ -14,6 +31,10 @@ void Libro::crearLibro(){
     cout << endl;
 }
 
+/**
+ * @brief Imprime el tamaño del Libro según cantidadHojas.
+ * 
+ */
 void Libro::tamaño(){
     if (cantidadHojas < 100)
     {
@@ -27,6 +48,12 @@ void Libro::tamaño(){
     }
 }
 
+/**
+ * @brief Muestra información de objeto Libro.
+ * 
+ * Imprime resumen, material relacionado y llama funciones mostrarGeneral() y mostrarLectura().
+ * 
+ */
 void Libro::mostrarInfo(){
     mostrarGeneral();
     mostrarLectura();
