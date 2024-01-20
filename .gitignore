@@ -1,2 +1,8 @@
 # Ignorar los archivos .exe
 *.exe
+
+# Ignorar los archivos .vscode
+*.vscode
+
+# Ignorar archivos de _pycache_
+*.pyc
