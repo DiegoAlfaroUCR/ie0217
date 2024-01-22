@@ -24,15 +24,3 @@ void Matriz<T>::crearMatriz(){
         contenido.push_back(vectorFila);
     }
 }
-
-template <class T>
-void Matriz<T>::mostrarMatriz(){
-    for(auto &fila : this->contenido){
-        cout << left << setw(4);
-        for(auto &elemento : fila){
-            cout << elemento;
-            cout << left << setw(4);
-        }
-        cout << endl;
-    }
-}

@@ -1,42 +1,24 @@
-#include "OperacionesBasicas.hpp"
+#include "OperacionCompleja.hpp"
 
-template <class T>
-void OperacionesBasicas<T>::validar(const OperacionesBasicas<T>& B, const string& tipoOperacion){
 
-    // Se obtienen las dimensiones de cada matriz.
-    int filasA = this->contenido.size();
-    int columnasA = this->contenido[0].size();
-    int filasB = B.contenido.size();
-    int columnasB = B.contenido[0].size();
-
-    // Excepciones para suma/resta.
-    if(tipoOperacion == "Suma/Resta"){
-        if((filasA != filasB) || (columnasA != columnasB)){
-            throw "ESCRIBIR ERROR AQUI.";
-        }
-    }
-
-    // Excepciones para multiplicación.
-    if(tipoOperacion == "Multiplicacion"){
-        if(columnasA != filasB){
-            throw "ESCRIBIR ERROR AQUI.";
-        }
-        cout << "Se dio el check de multiplicacion. " << endl;
-    }
+void OperacionCompleja::stringComplejo(complex<float> complejo){
+    float parteReal = complejo.real();
+    float parteImag = complejo.imag();;
+    cout << parteReal << " + " << parteImag
+    << left << setw(5) << "i";
 }
 
-template <class T>
-OperacionesBasicas<T> OperacionesBasicas<T>::operator+(const OperacionesBasicas<T> &otraMatriz){
-    OperacionesBasicas<T> resultado;
+OperacionCompleja OperacionCompleja::operator+ (const OperacionCompleja &otraMatriz){
+    OperacionCompleja resultado;
 
     int filas = this->contenido.size();
     int columnas = this->contenido[0].size();
 
-    vector<T> vectorFila;
+    vector<complex<float>> vectorFila;
     for (int fila = 0; fila < filas; fila++) {
         vectorFila.clear();
         for (int columna = 0; columna < columnas; columna++){
-            T entrada = this->contenido[fila][columna] + otraMatriz.contenido[fila][columna];
+            complex<float> entrada = this->contenido[fila][columna] + otraMatriz.contenido[fila][columna];
             vectorFila.push_back(entrada);
         }
         resultado.contenido.push_back(vectorFila);
@@ -44,18 +26,17 @@ OperacionesBasicas<T> OperacionesBasicas<T>::operator+(const OperacionesBasicas<
     return resultado;
 }
 
-template <class T>
-OperacionesBasicas<T> OperacionesBasicas<T>::operator-(const OperacionesBasicas<T> &otraMatriz){
-    OperacionesBasicas<T> resultado;
+OperacionCompleja OperacionCompleja::operator- (const OperacionCompleja &otraMatriz){
+    OperacionCompleja resultado;
 
     int filas = this->contenido.size();
     int columnas = this->contenido[0].size();
 
-    vector<T> vectorFila;
+    vector<complex<float>> vectorFila;
     for (int fila = 0; fila < filas; fila++) {
         vectorFila.clear();
         for (int columna = 0; columna < columnas; columna++){
-            T entrada = this->contenido[fila][columna] - otraMatriz.contenido[fila][columna];
+            complex<float> entrada = this->contenido[fila][columna] - otraMatriz.contenido[fila][columna];
             vectorFila.push_back(entrada);
         }
         resultado.contenido.push_back(vectorFila);
@@ -63,17 +44,16 @@ OperacionesBasicas<T> OperacionesBasicas<T>::operator-(const OperacionesBasicas<
     return resultado;
 }
 
-template <class T>
-OperacionesBasicas<T> OperacionesBasicas<T>::operator*(const OperacionesBasicas<T> &otraMatriz){
+OperacionCompleja OperacionCompleja::operator* (const OperacionCompleja &otraMatriz){
     // Se obtienen dimensiones importantes.
     int filas1 = this->contenido.size();
     int columnas1 = this->contenido[0].size();
     int columnas2 = otraMatriz.contenido[0].size();
 
     // Se crea un objeto con contenido vacio pero dimensiones filas1 x columnas2.
-    OperacionesBasicas<T> resultado;
+    OperacionCompleja resultado;
     for(int i = 0; i < filas1; i++){
-        vector<T> resultadoFila(columnas2);
+        vector<complex<float>> resultadoFila(columnas2);
         resultado.contenido.push_back(resultadoFila);
         }
 
