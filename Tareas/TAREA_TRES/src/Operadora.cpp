@@ -1,6 +1,18 @@
+/**
+ * @file Operadora.cpp
+ * @author Diego Alfaro Segura (diego.alfarosegura@ucr.ac.cr)
+ * @brief Archivo fuente para métodos de clase Operadora.
+ * @version 0.1
+ * @date 2024-01-22
+ * 
+ * @copyright Copyright (c) 2024
+ * Licenciado bajo CC BY-NC-ND 4.0
+ */
+
 #include "Operadora.hpp"
 
 int Operadora::imprimirMenu(){
+    /* Se muestra el menú principal. */
     cout << "-----Bienvenid@ al sistema de operacion de matrices-----" << endl;
     cout << "Escoja el tipo de variable a usar en las matrices." << endl;
     cout << "1. Enteros" << endl;
@@ -11,7 +23,7 @@ int Operadora::imprimirMenu(){
     
     int tipoVariable; cin >> tipoVariable;
 
-    // Manejo de errores en caso donde no es entero.
+    /* Manejo de errores en caso donde opcion dada no es valida. */
     if (!cin.good() || (tipoVariable < 0) || (tipoVariable > 4)){
         throw invalid_argument("Opcion dada no es valida");
     }
@@ -31,7 +43,7 @@ void Operadora::iniciarProceso(T matrizA, T matrizB){
     cout << "Se define primero matriz A, luego matriz B, y se opera de forma:" << endl;
     cout << "       A (operador) B, por ejemplo; A + B." << endl << endl;
 
-    // Se hace control de excepciones en proceso de crear las matrices.
+    /* Se hace control de excepciones en proceso de crear las matrices. */
     try {
         cout << "------------------Matriz A------------------" << endl;
         matrizA.crearMatriz();
@@ -46,7 +58,7 @@ void Operadora::iniciarProceso(T matrizA, T matrizB){
         exit(0);
     }
 
-    // Se hace control de excepciones en proceso de solicitar las operaciones.
+    /* Se hace control de excepciones en proceso de solicitar las operaciones. */
     while (1) {
         int operacion;
         try {
@@ -57,12 +69,11 @@ void Operadora::iniciarProceso(T matrizA, T matrizB){
             exit(0);
         }
         
-        // Se definen variables para manejar el proceso.
-        OperacionesBasicas<int> validadora;
-        T resultado;
-        char operador;
+        OperacionesBasicas<int> validadora; /* Objeto para usar metodo validar(). */
+        T resultado;                        /* Resultado de mismo tipo que matrices usadas. */
+        char operador;                      /* Operador representativo de operación escogida. */
 
-        // Se hace control de excepciones en proceso de realizar las operaciones.
+        /* Se hace control de excepciones en proceso de realizar las operaciones. */
         try {
             switch (operacion) {
             case 1:
@@ -83,11 +94,12 @@ void Operadora::iniciarProceso(T matrizA, T matrizB){
                 operador = '*';
                 break;
             }
+            /* Se muestra el resultado. */
             cout << endl << "Resultado de la operacion A " << operador << " B:" << endl;
             mostrarMatriz(resultado);
         }
         catch(const std::exception& e) {
-            std::cerr << "ERROR al realizar operaciones: " << e.what() << endl << endl;
+            std::cerr << "\nERROR al realizar operaciones: " << e.what() << endl << endl;
         }
     }
 }
@@ -95,9 +107,11 @@ void Operadora::iniciarProceso(T matrizA, T matrizB){
 
 template <class T>
 void Operadora::mostrarMatriz(T matrizDada){
+    /* Se recorre cada fila del contenido de la matriz. */
     for(auto &fila : matrizDada.contenido){
         cout << left << setw(5);
         for(auto &elemento : fila){
+            /* Se imprimen los elementos de la fila con espaciado correcto. */
             cout << elemento;
             cout << left << setw(5);
         }
@@ -107,9 +121,11 @@ void Operadora::mostrarMatriz(T matrizDada){
 
 template <>
 void Operadora::mostrarMatriz(OperacionCompleja MatrizCompleja){
+    /* Se recorre cada fila del contenido de la matriz. */
     for(auto &fila : MatrizCompleja.contenido){
         cout << setprecision(2) << fixed;
         for(auto &elemento : fila){
+            /* Se imprimen los números complejos de la fila con espaciado correcto. */
             MatrizCompleja.stringComplejo(elemento);
         }
         cout << endl;
