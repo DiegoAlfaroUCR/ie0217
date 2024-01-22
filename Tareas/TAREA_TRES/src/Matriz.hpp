@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include <iomanip>   /* Uso de setw() para espaciar correctamente información imprimida en terminal. */
+#include <stdexcept>
 using namespace std;
 
 template <class T>

@@ -8,13 +8,16 @@ int Operadora::imprimirMenu(){
     cout << "3. Numeros Complejos" << endl;
     cout << "Opcion 4. Salir del programa." << endl;
     cout << "Ingrese opcion: ";
-
+    
     int tipoVariable; cin >> tipoVariable;
 
-    // HACER MANEJO DE EXPECIONES CASO QUE NO SEA UN INT.
+    // Manejo de errores en caso donde no es entero.
+    if (!cin.good() || (tipoVariable < 0) || (tipoVariable > 4)){
+        throw invalid_argument("Opcion dada no es valida");
+    }
 
     if (tipoVariable == 4) {
-        cout << "Saliendo del sistema..." << endl;
+        cout << endl << "Saliendo del sistema..." << endl;
         exit(0);
     }
 
@@ -28,32 +31,65 @@ void Operadora::iniciarProceso(T matrizA, T matrizB){
     cout << "Se define primero matriz A, luego matriz B, y se opera de forma:" << endl;
     cout << "       A (operador) B, por ejemplo; A + B." << endl << endl;
 
-    cout << "------------------Matriz A------------------" << endl;
-    matrizA.crearMatriz();
-    cout << "--------------------------------------------" << endl << endl;
+    // Se hace control de excepciones en proceso de crear las matrices.
+    try {
+        cout << "------------------Matriz A------------------" << endl;
+        matrizA.crearMatriz();
+        cout << "--------------------------------------------" << endl << endl;
 
-    cout << "------------------Matriz B------------------" << endl;
-    matrizB.crearMatriz();
-    cout << "--------------------------------------------" << endl << endl;
-
-    int operacion = matrizA.pedirOperacion();
-
-    T resultado;
-    switch (operacion) {
-    case 1:
-        resultado = matrizA + matrizB;
-        break;
-
-    case 2:
-        resultado = matrizA - matrizB;
-        break;
-    
-    case 3:
-        resultado = matrizA * matrizB;
-        break;
+        cout << "------------------Matriz B------------------" << endl;
+        matrizB.crearMatriz();
+        cout << "--------------------------------------------" << endl << endl;
     }
-    cout << endl << "Resultado de la operacion: " << endl;
-    mostrarMatriz(resultado);
+    catch(const std::exception& e) {
+        std::cerr << "\nERROR al crear las matrices: "<<e.what() << '\n';
+        exit(0);
+    }
+
+    // Se hace control de excepciones en proceso de solicitar las operaciones.
+    while (1) {
+        int operacion;
+        try {
+            operacion = matrizA.pedirOperacion();
+        }
+        catch(const std::exception& e){
+            std::cerr << "\nERROR al escoger operacion: "<< e.what() << '\n';
+            exit(0);
+        }
+        
+        // Se definen variables para manejar el proceso.
+        OperacionesBasicas<int> validadora;
+        T resultado;
+        char operador;
+
+        // Se hace control de excepciones en proceso de realizar las operaciones.
+        try {
+            switch (operacion) {
+            case 1:
+                validadora.validar(matrizA, matrizB, "Suma/Resta");
+                resultado = matrizA + matrizB;
+                operador = '+';
+                break;
+
+            case 2:
+                validadora.validar(matrizA, matrizB, "Suma/Resta");
+                resultado = matrizA - matrizB;
+                operador = '-';
+                break;
+            
+            case 3:
+                validadora.validar(matrizA, matrizB, "Multiplicacion");
+                resultado = matrizA * matrizB;
+                operador = '*';
+                break;
+            }
+            cout << endl << "Resultado de la operacion A " << operador << " B:" << endl;
+            mostrarMatriz(resultado);
+        }
+        catch(const std::exception& e) {
+            std::cerr << "ERROR al realizar operaciones: " << e.what() << endl << endl;
+        }
+    }
 }
 
 

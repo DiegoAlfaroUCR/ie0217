@@ -1,27 +1,27 @@
 #include "OperacionesBasicas.hpp"
 
 template <class T>
-void OperacionesBasicas<T>::validar(const OperacionesBasicas<T>& B, const string& tipoOperacion){
+template <class U>
+void OperacionesBasicas<T>::validar(const U& A, const U& B, const string& tipoOperacion){
 
     // Se obtienen las dimensiones de cada matriz.
-    int filasA = this->contenido.size();
-    int columnasA = this->contenido[0].size();
+    int filasA = A.contenido.size();
+    int columnasA = A.contenido[0].size();
     int filasB = B.contenido.size();
     int columnasB = B.contenido[0].size();
 
     // Excepciones para suma/resta.
     if(tipoOperacion == "Suma/Resta"){
         if((filasA != filasB) || (columnasA != columnasB)){
-            throw "ESCRIBIR ERROR AQUI.";
+            throw domain_error("Dimensiones de las matrices no aptas para suma/resta.");
         }
     }
 
     // Excepciones para multiplicación.
     if(tipoOperacion == "Multiplicacion"){
         if(columnasA != filasB){
-            throw "ESCRIBIR ERROR AQUI.";
+            throw domain_error("Dimensiones de las matrices no aptas para multiplicacion.");
         }
-        cout << "Se dio el check de multiplicacion. " << endl;
     }
 }
 
