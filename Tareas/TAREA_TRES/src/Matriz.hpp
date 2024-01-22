@@ -12,6 +12,7 @@ class Matriz {
     public: // De momento en public
         vector<vector<T>> contenido;
         void crearMatriz();
+        int pedirOperacion();
 };
 
 #include "Matriz.cpp"
