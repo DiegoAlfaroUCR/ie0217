@@ -1,3 +1,55 @@
+# Instrucciones de ejecución
+La parte práctica de esta tarea incluye la elaboración de dos programas en C++, con el Makefile para ejecutarlos. El código fuente de ambos programas se encuentra en el directorio [src](/Tareas/TAREA_TRES/src/) y el [Makefile](/Tareas/TAREA_TRES/Makefile) se encuentra en el directorio actual. Para compilar e iniciar ambos programas solo debe correr el comando make en la carpeta actual (ie0217\Tareas\TAREA_TRES).
+
+Windows (depende de su configuración de mingw):
+```
+mingw32-make
+```
+
+Linux:
+```
+make
+```
+
+En caso de querer construir e iniciar solo el programa de la parte 1  se puede correr `make parte1`. Alternativamente, para solo compilar/iniciar el programa de la parte 2 puede usar el comando `make parte2`.
+
+Windows:
+```
+mingw32-make parte1      \\      mingw32-make parte2
+```
+
+Linux:
+```
+make parte1              \\      make parte2
+```
+
+Finalmente, para limpiar el directorio de archivos generados, ingrese el comando `make clean`
+
+Windows:
+```
+mingw32-make clean
+```
+
+Linux:
+```
+make clean
+```
+# Instrucciones del programa.
+
+## Parte 1
+En el caso del programa de la parte 1, consiste en un sistema de operación de matrices. Al iniciar el programa debe escoger un tipo de dato a usar. se incluyen enteros, flotantes y números complejos. Al seleccionar el tipo de dato debe ingresar los datos apropiados a dos matrices, matriz A y matriz B. Note que en el caso de enteros solo puede ingresar números enteros; en el caso de flotantes es posible digitar un entero que se transforma a flotante y flotantes; y finalmente, en el caso de complejos puede digitar enteros y flotantes que se transforman a complejos. Si elige la opción de números complejos debe digitarlos de la manera (real,imaginario), por ejemplo debe digitar (1,2) en el caso de un número 1 + 2i. Luego de digitar los datos de ambas matrices puede escoger tres operaciones a realizar: A + B, A - B y A * B. Puede realizar cualquiera cuantas veces desee, si la operación no es posible debido a las dimensiones de las matrices se le informará y podrá escoger otra operación. Finalmente puede escoger una opción para finalizar el programa.
+
+## Parte 2
+En el caso del programa de la parte 2, consiste en un sistema que verifica si un correo ingresado es válido. Al iniciar el programa se le pide ingresar un correo por la terminal, puede digitar la dirección que desee. El formato válido posee la forma nombre@dominio.extension, y se siguen ciertas reglas para que sean válidos:
+
+* El nombre puede contener letras, números, puntos (.) y guiones (-)( ), pero no debe comenzar ni terminar con un punto o guión.
+* El nombre no debe de tener más de 15 letras, números, puntos y guiones.
+* El dominio SOLO puede contener letras y debe tener al menos un punto al final.
+* La extensión puede contener solo letras y debe tener entre 2 y 4 caracteres.
+* No se permiten caracteres especiales adicionales en ninguna parte de la dirección de correo electrónico.
+
+Se le informará por terminal si el correo dado cumple con estas condiciones.
+
 # Parte Teórica
 
 ## Templates:

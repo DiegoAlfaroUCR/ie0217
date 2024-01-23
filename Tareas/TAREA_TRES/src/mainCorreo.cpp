@@ -24,12 +24,12 @@ int main(){
     if (instancia.verificar()) {
 
         /* Si se da el match se imprime que es válido. */
-        cout << "Correo es valido.";
+        cout << "Correo es valido." << endl;
 
     } else {
 
         /* Si no se da el match se imprime que no es válido. */
-        cout << "Correo no es valido.";
+        cout << "Correo no es valido." << endl;
     }
 
     return 0;
