@@ -4,11 +4,13 @@
 #include <iostream>
 #include <string>
 #include <regex>
+#include <stdexcept>
 using namespace std;
 
 class Correo {
     private:
-        const regex expresion = regex("a");
+        const regex expresion = regex("a@");
+        const regex arroba = regex("@");
     public:
         bool verificar();
 };
