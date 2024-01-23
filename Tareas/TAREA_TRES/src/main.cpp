@@ -1,7 +1,7 @@
 /**
  * @file main.cpp
  * @author Diego Alfaro Segura (diego.alfarosegura@ucr.ac.cr)
- * @brief Archivo principal que inicializa el programa.
+ * @brief Archivo principal que inicializa el programa de la parte 1.
  * @version 0.1
  * @date 2024-01-22
  * 
