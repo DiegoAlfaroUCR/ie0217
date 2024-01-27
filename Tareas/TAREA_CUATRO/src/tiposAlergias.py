@@ -22,36 +22,24 @@ class TipoAlergias(Alergia):
         self.todasAlergias.append(Alergia("gluten", 512))
         self.todasAlergias.append(Alergia("huevo", 1024))
 
-    def ingresarAlergia(self):
-        print("Ingrese las alergias que le afectan.\
-               \nNo ingrese datos para salir.")
+    def asignacion(self, argumentos):
+        numDado = False
+        nombreDado = False
 
-        while True:
-            cin = input("Ingrese nombre y/o puntaje de la alergia: ")
-            argumentos = [arg for arg in cin.split()]
+        for argumento in argumentos:
+            if argumento.isnumeric():
+                numDado = True
+                numObj = int(argumento)
+            else:
+                nombreDado = True
+                nombreObj = argumento
 
-            if len(argumentos) == 0:
-                break
-
-            numDado = False
-            nombreDado = False
-
-            for argumento in argumentos:
-                if argumento.isnumeric():
-                    numDado = True
-                    numObj = int(argumento)
-                else:
-                    nombreDado = True
-                    nombreObj = argumento
-
-            if numDado and nombreDado:
-                self.ingresadas.append(Alergia(nombreObj, numObj))
-            elif numDado:
-                self.sinNombre.append(numObj)
-            elif nombreDado:
-                self.sinPuntos.append(nombreObj)
-
-        self.relacionar()
+        if numDado and nombreDado:
+            self.ingresadas.append(Alergia(nombreObj, numObj))
+        elif numDado:
+            self.sinNombre.append(numObj)
+        elif nombreDado:
+            self.sinPuntos.append(nombreObj)
 
     def relacionar(self):
         listaSinNombre = [punto for punto in self.sinNombre]
@@ -71,3 +59,38 @@ class TipoAlergias(Alergia):
                 self.sinPuntos.remove(nom)
             except StopIteration:
                 pass
+
+    def ingresarAlergia(self):
+        print("Ingrese las alergias que le afectan.\
+               \nNo ingrese datos para salir.")
+
+        while True:
+            cin = input("Ingrese nombre y/o puntaje de la alergia: ")
+            argumentos = [arg for arg in cin.split()]
+
+            if len(argumentos) == 0:
+                break
+
+            self.asignacion(argumentos)
+
+        self.relacionar()
+
+    def crearAlergia(self):
+        print("Ingrese los datos de la alergia a agregar al registro.")
+        name = input("Ingrese el nombre: ")
+        puntos = input("Ingrese el puntaje (debe ser potencia de 2): ")
+
+        if not puntos.isnumeric():
+            raise ValueError("El puntaje dado no es un numero.")
+        puntos = int(puntos)
+
+        if (puntos & (puntos - 1)) != 0:
+            raise ValueError("El puntaje dado no es potencia de 2.")
+
+        if puntos in [x.puntos for x in self.todasAlergias]:
+            raise ValueError("El puntaje dado pertenece a otra alergia.")
+
+        if name in [x.name for x in self.todasAlergias]:
+            raise ValueError("Nombre de alergia ya existe.")
+
+        self.todasAlergias.append(Alergia(name, puntos))

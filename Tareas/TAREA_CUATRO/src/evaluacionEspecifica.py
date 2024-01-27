@@ -1,5 +1,4 @@
 from alergia import Alergia
-# from tiposAlergias import TipoAlergias
 
 
 class evaluacionEspecifica(Alergia):
