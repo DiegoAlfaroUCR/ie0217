@@ -27,12 +27,14 @@ class TipoAlergias(Alergia):
         nombreDado = False
 
         for argumento in argumentos:
-            if argumento.isnumeric():
+            if argumento.isdigit():
                 numDado = True
                 numObj = int(argumento)
-            else:
+            elif argumento.isalpha():
                 nombreDado = True
                 nombreObj = argumento
+            else:
+                print("^^ Descartado: no corresponde a nombre o puntaje. ^^\n")
 
         if numDado and nombreDado:
             self.ingresadas.append(Alergia(nombreObj, numObj))
