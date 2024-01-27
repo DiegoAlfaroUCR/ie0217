@@ -3,24 +3,12 @@ from alergia import Alergia
 
 class TipoAlergias(Alergia):
 
-    todasAlergias = []
     ingresadas = []
     sinNombre = []
     sinPuntos = []
 
     def __init__(self):
-        # Se agregan las alergias dadas por la tarea.
-        archivo = open("src\\Alergias.txt", "r")
-        contador = 0
-        for line in archivo.readlines():
-            argumentos = line.split()
-            name = argumentos[0]
-            puntos = int(argumentos[1].replace('(', '').replace(')', ''))
-            self.todasAlergias.append(Alergia(name, puntos))
-            contador += 1
-            if contador == 10:
-                break
-        archivo.close()
+        self.baseDatos()
 
     def asignacion(self, argumentos):
         numDado = False
@@ -46,23 +34,27 @@ class TipoAlergias(Alergia):
     def relacionar(self):
         listaSinNombre = [punto for punto in self.sinNombre]
         for punto in listaSinNombre:
-            try:
-                eval = next(x for x in self.todasAlergias if x.puntos == punto)
-                if eval not in self.ingresadas:
-                    self.ingresadas.append(eval)
+            # Condiciones
+            coincide = punto in self.todasAlergias
+            if coincide:
+                original = self.todasAlergias[punto] not in self.ingresadas
                 self.sinNombre.remove(punto)
-            except StopIteration:
-                pass
 
-        listaSinPuntos = [nom for nom in self.sinPuntos]
-        for nom in listaSinPuntos:
-            try:
-                eval = next(x for x in self.todasAlergias if x.name == nom)
-                if eval not in self.ingresadas:
-                    self.ingresadas.append(eval)
-                self.sinPuntos.remove(nom)
-            except StopIteration:
-                pass
+            if (coincide) and (original):
+                self.ingresadas.append(self.todasAlergias[punto])
+
+        listaSinPuntos = [nombre for nombre in self.sinPuntos]
+        for nombre in listaSinPuntos:
+            # Condiciones
+            coincide = nombre in self.listaNombres()
+            if coincide:
+                original = nombre not in self.listaNombres(self.ingresadas)
+                self.sinPuntos.remove(nombre)
+
+            if (coincide) and (original):
+                reverse = {a.name: p for p, a in self.todasAlergias.items()}
+                puntos = reverse[nombre]
+                self.ingresadas.append(self.todasAlergias[puntos])
 
     def ingresarAlergia(self):
         print("\nIngrese las alergias que le afectan.\
@@ -84,7 +76,7 @@ class TipoAlergias(Alergia):
         name = input("Ingrese el nombre: ")
         puntos = input("Ingrese el puntaje (debe ser potencia de 2): ")
 
-        if not puntos.isnumeric():
+        if not puntos.isdigit():
             print("\nERROR: El puntaje dado no es un numero.")
             return
         puntos = int(puntos)
@@ -93,12 +85,12 @@ class TipoAlergias(Alergia):
             print("\nERROR: El puntaje dado no es potencia de 2.")
             return
 
-        if puntos in [x.puntos for x in self.todasAlergias]:
+        if puntos in self.todasAlergias:
             print("\nERROR: El puntaje dado pertenece a otra alergia.")
             return
 
-        if name in [x.name for x in self.todasAlergias]:
+        if name in self.listaNombres():
             print("\nERROR: Nombre de alergia ya existe.")
             return
 
-        self.todasAlergias.append(Alergia(name, puntos))
+        self.todasAlergias[puntos] = Alergia(name, puntos)

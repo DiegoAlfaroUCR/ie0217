@@ -12,7 +12,8 @@ while True:
     print("1. Ingresar puntuacion de alergia.")
     print("2. Ingresar alergias que le afectan.")
     print("3. Agregar una alergia a la base de datos.")
-    print("4. Salir del programa.")
+    print("4. Mostrar lista de alergias en base de datos.")
+    print("5. Salir del programa.")
     opcion = int(input("Escoja una opción: "))
 
     match opcion:
@@ -24,5 +25,7 @@ while True:
         case 3:
             general.crearAlergia()
         case 4:
+            general.mostrar_info(general.todasAlergias)
+        case 5:
             print("\nSaliendo del programa...")
             exit(0)

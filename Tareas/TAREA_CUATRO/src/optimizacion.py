@@ -15,13 +15,13 @@ especifica = evaluacionEspecifica()
 
 # Se agregan las alergias adicionales.
 def cincuentaAlergias():
-    general.todasAlergias.clear()
+    general.todasAlergias = {}
     archivo = open("src" + r'\' + "Alergias.txt", "r")
     for line in archivo.readlines():
         argumentos = line.split()
         name = argumentos[0]
         puntos = int(argumentos[1].replace('(', '').replace(')', ''))
-        general.todasAlergias.append(Alergia(name, puntos))
+        general.todasAlergias[puntos] = Alergia(name, puntos)
     archivo.close()
 """
 

@@ -15,14 +15,11 @@ class evaluacionEspecifica(Alergia):
             numeroBinario -= maximo
         return listaPuntos
 
-    def encontrarAlergias(self, puntajesPosibles, Alergias):
+    def encontrarAlergias(self, puntajesPosibles, todasAlergias):
         encontradas = []
         for puntos in puntajesPosibles:
-            try:
-                eval = next(obj for obj in Alergias if obj.puntos == puntos)
-                encontradas.append(eval)
-            except StopIteration:
-                encontradas.append(Alergia("Alergia desconocida", puntos))
+            if puntos in todasAlergias:
+                encontradas.append(todasAlergias[puntos])
         return encontradas
 
     def evaluarAlergias(self, puntuacion, todasAlergias):
