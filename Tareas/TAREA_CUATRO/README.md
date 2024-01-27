@@ -1,3 +1,105 @@
+# Parte Práctica: Parte 2
+
+Con respecto al análisis del rendimiento/optimización del programa, se emplearon las herramientas timeit y cProfile. Debido a que la mayoría de los métodos requieren un input del usuario o solo imprimen listas ya definidas, se concentró el análisis en los métodos que emplean algoritmos de búsqueda/definición. Estos fueron evaluarAlergias, que toma un puntaje de alergia y retorna una lista de alergias al que se relaciona, y relacionar, que relaciona el contenido de 3 listas y un diccionario para ordenarlos de forma correcta. Al final también se muestra un análisis del programa de forma general. **Todos estos resultados se pueden verificar ya sea por medio de src/optimizacion.py o con commando `make performance`**.
+
+## evaluarAlergias()
+Para el análisis de esta función se tomó en cuenta el tamaño del puntaje y la cantidad de alergias en la base de datos. Primero se realizó la prueba del tiempo que le toma al algoritmo encontrar las alergias al darle un puntaje de 1000, y posteriormente con el puntaje máximo para las alergias disponibles. Esta última se escogió pues es la opción que debe retornar todas las alergias guardadas. Esto se repitió para cuando se tienen solo 10 alergias y cuando se tienen 50.
+
+Resultados:
+```
+-----Análisis de evaluarAlergias-----
+Análisis con timeit.
+Tiempo de ejecucion con 10 alergias:
+Tiempo para puntaje = 1000:  0.0071446000365540385
+Tiempo para puntaje maximo:  0.007334299967624247
+
+Tiempo de ejecucion con 50 alergias:
+Tiempo para puntaje = 1000:  0.007463600020855665
+Tiempo para puntaje maximo:  0.0074734000954777
+```
+
+Se muestra que aun con 100000 repeticiones, el algoritmo no le toma ni 8 milisegundos para encontrar las alergias. **Note que el tiempo mostrado corresponde a las 100000 repeticiones, no a una sola**. Además, se dió un aumento leve entre las repeticiones con el número 1000 y el máximo, esto es esperado pues no debe buscar tantas opciones. El tiempo de ejecución entre el programa con 10 alergias y el de 50 alergias no es tan drástico en esta cantidad, pero significa un aumento en 0.04 veces.
+
+Luego se tiene el análisis con cProfile se muestra que la mayoría de llamadas se genera por el uso de len() y append(). Mientras que append es necesario para el funcionamiento, se podría recortar el uso de len definiendo las longitudes de forma general y no de forma local para algunos métodos, pero en otros es estrictamente necesario.
+
+```
+Análisis con cProfile y puntaje 9999999999999999999999.
+         110 function calls in 0.000 seconds
+
+Ordered by: standard name
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    0.000    0.000 <string>:1(<module>)
+        1    0.000    0.000    0.000    0.000 evaluacionEspecifica.py:18(encontrarAlergias)
+        1    0.000    0.000    0.000    0.000 evaluacionEspecifica.py:25(evaluarAlergias)
+        1    0.000    0.000    0.000    0.000 evaluacionEspecifica.py:8(retornarPuntos)
+        1    0.000    0.000    0.000    0.000 {built-in method builtins.exec}
+        1    0.000    0.000    0.000    0.000 {built-in method builtins.format}
+       46    0.000    0.000    0.000    0.000 {built-in method builtins.len}
+       57    0.000    0.000    0.000    0.000 {method 'append' of 'list' objects}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+```
+
+## relacionar()
+
+Se realizó un análisis similar con relacionar(), solo que en este se creó la complejidad por medio de incluir elementos distintos en las listas todasAlergias, ingresadas, sinNombre y sinPuntos:
+
+```
+gen.ingresadas = [gen.todasAlergias[x] for x in [1, 2, 4, 8, 256]]
+gen.sinNombre = [x for x in range(0, 500)]
+gen.sinPuntos = ['huevos', 'a', 'b', 'gatos', 'c', 'd', 'mariscos', 'tomates',
+                 'e', 'f', 'g', 'h', 'i']
+```
+
+Con esto se generaron los tiempos para 100000 repeticiones, este algoritmo se muestra mucho más lento que evaluarAlergias debido a que tiene que iterar varias veces entre las lista ingresadas y el diccionario todasAlergias por cada elemento en sinNombre y sinPuntos:
+
+```
+-----Análisis de relacionar-----
+Tiempo para relacionar con listas grandes:  3.746866900008172
+```
+
+Análisis con cProfile muestra que la mayoria de acciones son remover/agregar elementos de las listas y crucialmente revisar la lista de dombres por un método. Se podría mejorar ligeramente si se asigna esta lista como una variable no local, sino como atributo en vez de volver a generarla cada vez que se referencia.
+
+```
+Análisis con cProfile.
+         43 function calls in 0.000 seconds
+
+   Ordered by: standard name
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    0.000    0.000 <string>:1(<module>)
+       17    0.000    0.000    0.000    0.000 alergia.py:32(listaNombres)
+        1    0.000    0.000    0.000    0.000 tiposAlergias.py:34(relacionar)
+        1    0.000    0.000    0.000    0.000 {built-in method builtins.exec}
+        9    0.000    0.000    0.000    0.000 {method 'append' of 'list' objects}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+       13    0.000    0.000    0.000    0.000 {method 'remove' of 'list' objects}
+```
+
+## General
+Finalmente, al hacer un uso normal del programa se obtiene este cProfile, solo se muestra lo importante:
+
+```
+         1174 function calls (1148 primitive calls) in 19.717 seconds
+
+   Ordered by: internal time
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+       13   19.701    1.515   19.701    1.515 {built-in method builtins.input}
+       60    0.013    0.000    0.013    0.000 {built-in method builtins.print}
+     17/5    0.000    0.000    0.004    0.001 alergia.py:10(mostrar_info)
+       75    0.000    0.000    0.000    0.000 {built-in method builtins.len}
+       87    0.000    0.000    0.000    0.000 {method 'endswith' of 'str' objects}
+        5    0.000    0.000    0.000    0.000 {method 'split' of 'str' objects}
+      4/2    0.000    0.000    0.002    0.001 <frozen importlib._bootstrap>:664(_load_unlocked)
+       21    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:123(<listcomp>)
+       56    0.000    0.000    0.000    0.000 {method 'startswith' of 'str' objects}
+       14    0.000    0.000    0.001    0.000 <frozen importlib._bootstrap_external>:144(_path_stat)
+       24    0.000    0.000    0.000    0.000 <frozen importlib._bootstrap_external>:138(<genexpr>)
+       71    0.000    0.000    0.000    0.000 {method 'rstrip' of 'str' objects}
+```
+Se denota que ningún proceso que no depende de un input tomó tiempo medible, y la mayoría del proceso se equivale a manipulacion de strings y de listas, por lo que se podría reducir este manejo con contenedores distintos o al cambiar el estilo de ingreso de datos de la terminal a un .txt
+
 # Parte Teórica
 
 **1. Explique la diferencia entre una lista y una tupla en Python.**

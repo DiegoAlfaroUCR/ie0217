@@ -12,3 +12,6 @@ MAIN = $(SRCDIR)main.py
 # Se ejecuta el script.
 default:
 	python3 $(MAIN)
+
+performance:
+	python3 -m cProfile -s time $(MAIN)
