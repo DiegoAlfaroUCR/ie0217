@@ -10,17 +10,17 @@ class TipoAlergias(Alergia):
 
     def __init__(self):
         # Se agregan las alergias dadas por la tarea.
-        self.todasAlergias.append(Alergia("huevos", 1))
-        self.todasAlergias.append(Alergia("cacahuates", 2))
-        self.todasAlergias.append(Alergia("mariscos", 4))
-        self.todasAlergias.append(Alergia("fresas", 8))
-        self.todasAlergias.append(Alergia("tomates", 16))
-        self.todasAlergias.append(Alergia("chocolate", 32))
-        self.todasAlergias.append(Alergia("polen", 64))
-        self.todasAlergias.append(Alergia("gatos", 128))
-        self.todasAlergias.append(Alergia("sardina", 256))
-        self.todasAlergias.append(Alergia("gluten", 512))
-        self.todasAlergias.append(Alergia("huevo", 1024))
+        archivo = open("src\\Alergias.txt", "r")
+        contador = 0
+        for line in archivo.readlines():
+            argumentos = line.split()
+            name = argumentos[0]
+            puntos = int(argumentos[1].replace('(', '').replace(')', ''))
+            self.todasAlergias.append(Alergia(name, puntos))
+            contador += 1
+            if contador == 10:
+                break
+        archivo.close()
 
     def asignacion(self, argumentos):
         numDado = False

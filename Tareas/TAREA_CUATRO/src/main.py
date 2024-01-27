@@ -1,6 +1,5 @@
 from evaluacionGeneral import evaluacionGeneral
 from evaluacionEspecifica import evaluacionEspecifica
-# import sys
 
 # Se crean objetos de las dos clases necesarias
 general = evaluacionGeneral()
