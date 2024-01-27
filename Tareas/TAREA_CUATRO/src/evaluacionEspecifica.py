@@ -32,7 +32,7 @@ class evaluacionEspecifica(Alergia):
         return encontradas
 
     def infoUsuario(self, todasAlergias):
-        puntuacion = int(input("Ingrese su puntuacion de alergia: "))
+        puntuacion = int(input("\nIngrese su puntuacion de alergia: "))
         evaluadas = self.evaluarAlergias(puntuacion, todasAlergias)
         print("\n-----Su Informacion Específica-----")
         print("Su puntuacion de alergia:", puntuacion)

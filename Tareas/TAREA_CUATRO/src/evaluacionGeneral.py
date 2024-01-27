@@ -14,18 +14,18 @@ class evaluacionGeneral(TipoAlergias):
     def calcularPromedio(self):
         cantidadDefinida = len(self.ingresadas)
         cantidadIndef = len(self.sinNombre) + len(self.sinPuntos)
-        promedio = cantidadDefinida/(cantidadDefinida + cantidadIndef)
-        if promedio != 1:
-            print("Promedio de alergias identificadas: %.2f" % promedio)
+        if (cantidadIndef == 0):
+            print("\nPromedio de alergias identificadas: 100%")
+        else:
+            promedio = cantidadDefinida/(cantidadDefinida + cantidadIndef)*100
+            print("\nPromedio de alergias identificadas: %.2f %%" % promedio)
 
     def mostrarIndefinidos(self):
         if len(self.sinPuntos) != 0:
-            print("Alergias sin puntaje conocido:")
-            print(self.sinPuntos)
+            print("Alergias sin puntaje conocido:", self.sinPuntos)
 
         if len(self.sinNombre) != 0:
-            print("Resultados Desconocidos (puntajes sin nombre):")
-            print(self.sinNombre)
+            print("Resultados Desconocidos:", self.sinNombre)
 
     def mostrarGeneral(self):
         print("\n-----Su Información General-----")

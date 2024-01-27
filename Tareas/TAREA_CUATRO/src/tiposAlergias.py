@@ -46,7 +46,8 @@ class TipoAlergias(Alergia):
         for punto in listaSinNombre:
             try:
                 eval = next(x for x in self.todasAlergias if x.puntos == punto)
-                self.ingresadas.append(eval)
+                if eval not in self.ingresadas:
+                    self.ingresadas.append(eval)
                 self.sinNombre.remove(punto)
             except StopIteration:
                 pass
@@ -55,13 +56,14 @@ class TipoAlergias(Alergia):
         for nom in listaSinPuntos:
             try:
                 eval = next(x for x in self.todasAlergias if x.name == nom)
-                self.ingresadas.append(eval)
+                if eval not in self.ingresadas:
+                    self.ingresadas.append(eval)
                 self.sinPuntos.remove(nom)
             except StopIteration:
                 pass
 
     def ingresarAlergia(self):
-        print("Ingrese las alergias que le afectan.\
+        print("\nIngrese las alergias que le afectan.\
                \nNo ingrese datos para salir.")
 
         while True:
@@ -81,16 +83,20 @@ class TipoAlergias(Alergia):
         puntos = input("Ingrese el puntaje (debe ser potencia de 2): ")
 
         if not puntos.isnumeric():
-            raise ValueError("El puntaje dado no es un numero.")
+            print("\nERROR: El puntaje dado no es un numero.")
+            return
         puntos = int(puntos)
 
         if (puntos & (puntos - 1)) != 0:
-            raise ValueError("El puntaje dado no es potencia de 2.")
+            print("\nERROR: El puntaje dado no es potencia de 2.")
+            return
 
         if puntos in [x.puntos for x in self.todasAlergias]:
-            raise ValueError("El puntaje dado pertenece a otra alergia.")
+            print("\nERROR: El puntaje dado pertenece a otra alergia.")
+            return
 
         if name in [x.name for x in self.todasAlergias]:
-            raise ValueError("Nombre de alergia ya existe.")
+            print("\nERROR: Nombre de alergia ya existe.")
+            return
 
         self.todasAlergias.append(Alergia(name, puntos))
