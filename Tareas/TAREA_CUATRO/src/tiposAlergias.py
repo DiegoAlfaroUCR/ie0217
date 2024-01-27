@@ -54,7 +54,8 @@ class TipoAlergias(Alergia):
         self.relacionar()
 
     def relacionar(self):
-        for punto in self.sinNombre:
+        listaSinNombre = [punto for punto in self.sinNombre]
+        for punto in listaSinNombre:
             try:
                 eval = next(x for x in self.todasAlergias if x.puntos == punto)
                 self.ingresadas.append(eval)
@@ -62,20 +63,11 @@ class TipoAlergias(Alergia):
             except StopIteration:
                 pass
 
-        for nom in self.sinPuntos:
+        listaSinPuntos = [nom for nom in self.sinPuntos]
+        for nom in listaSinPuntos:
             try:
                 eval = next(x for x in self.todasAlergias if x.name == nom)
                 self.ingresadas.append(eval)
                 self.sinPuntos.remove(nom)
             except StopIteration:
                 pass
-
-
-instancia = TipoAlergias()
-instancia.ingresarAlergia()
-for x in instancia.ingresadas:
-    x.mostrar_info()
-for y in instancia.sinNombre:
-    print(y)
-for y in instancia.sinPuntos:
-    print(y)

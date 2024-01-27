@@ -26,19 +26,17 @@ class evaluacionEspecifica(Alergia):
                 encontradas.append(Alergia("Alergia desconocida", puntos))
         return encontradas
 
-    def evaluar_alergias(self, puntuacion, todasAlergias):
+    def evaluarAlergias(self, puntuacion, todasAlergias):
         # Se encuentran alergias y se retorna lista de ellas
         puntajesPosibles = self.retornarPuntos(puntuacion)
         encontradas = self.encontrarAlergias(puntajesPosibles, todasAlergias)
         return encontradas
 
-
-"""instancia = TipoAlergias()
-# instancia.ingresarAlergia()
-opera = evaluacionEspecifica()
-opera.mostrar_info(instancia.todasAlergias)
-lista = opera.evaluar_alergias(2050, instancia.todasAlergias)
-print("\n\n")
-for x in lista:
-    x.mostrar_info()
-"""
+    def infoUsuario(self, todasAlergias):
+        puntuacion = int(input("Ingrese su puntuacion de alergia: "))
+        evaluadas = self.evaluarAlergias(puntuacion, todasAlergias)
+        print("\n-----Su Informacion Específica-----")
+        print("Su puntuacion de alergia:", puntuacion)
+        print("Las alergias a las que es suceptible: ")
+        for alergia in evaluadas:
+            alergia.mostrar_info()

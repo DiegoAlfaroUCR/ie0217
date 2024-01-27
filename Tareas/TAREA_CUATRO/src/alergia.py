@@ -10,4 +10,4 @@ class Alergia:
             for alergia in todasAlergias:
                 alergia.mostrar_info()
         else:
-            print(f"Nombre: {self.name}, Puntuacion: {self.puntos}\n")
+            print(f"Nombre: {self.name}, Puntuacion: {self.puntos}")
