@@ -1,3 +1,9 @@
+"""
+Archivo para hacer pruebas de optimización.
+Autor: Diego Alfaro Segura
+Copyright: Licenciado bajo CC BY-NC-ND 4.0
+"""
+
 
 import timeit
 import cProfile
@@ -5,7 +11,7 @@ from evaluacionGeneral import evaluacionGeneral
 from evaluacionEspecifica import evaluacionEspecifica
 
 
-# Este setup es para el uso de cProfile
+" Este setup es para el uso de cProfile. "
 gen = evaluacionGeneral()
 esp = evaluacionEspecifica()
 gen.ingresadas = [gen.todasAlergias[x] for x in [1, 2, 4, 8, 256]]
@@ -14,8 +20,10 @@ gen.sinPuntos = ['huevos', 'a', 'b', 'gatos', 'c', 'd', 'mariscos', 'tomates',
                  'e', 'f', 'g', 'h', 'i']
 
 
-# Este formato de prueba fue tomado de:
-# https://www.geeksforgeeks.org/timeit-python-examples/
+"""
+Este formato de prueba fue tomado de:
+https://www.geeksforgeeks.org/timeit-python-examples/
+"""
 
 print("##### Análisis con 100000 repeticiones de algunos métodos #####\n")
 

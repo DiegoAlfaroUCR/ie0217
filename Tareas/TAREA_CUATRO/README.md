@@ -1,3 +1,30 @@
+# Instrucciones de ejecución
+La parte práctica de esta tarea incluye la elaboración de un sistema de evaluación de alergias en Python, con su propio Makefile para ejecutarlo. El código fuente del programa se encuentra en el directorio [src](/Tareas/TAREA_CUATRO/src/) y el [Makefile](/Tareas/TAREA_CUATRO/Makefile) se encuentra en el directorio actual. Para iniciar el programa solo debe correr el comando make en la carpeta actual (ie0217\Tareas\TAREA_CUATRO).
+
+Windows (depende de su configuración de mingw):
+```
+mingw32-make
+```
+
+Linux:
+```
+make
+```
+
+Para comprobar la última sección de pruebas realizadas en la siguiente sección (Parte Práctica: Parte 2), debe correr el comando `make performance`:
+
+Windows (depende de su configuración de mingw):
+```
+mingw32-make performance
+```
+
+Linux:
+```
+make performance
+```
+# Instrucciones del programa.
+Al iniciar el programa se le presentará un menú con opciones que debe escoger a partir de la terminal. Siga las instrucciones mostradas en el menú para realizar las evaluaciones. Las opciones deben coincidir con las mostradas. Cuando se le pida la puntuación de alergia debe dar un número entero. Al ingresar alergias que le afecta puede ingresar el nombre y/o la puntuacion de la alergia, pero debe dar un nombre (string) o puntaje (entero). Al crear una alergia el puntaje debe ser un número que sea potencia de 2. 
+
 # Parte Práctica: Parte 2
 
 Con respecto al análisis del rendimiento/optimización del programa, se emplearon las herramientas timeit y cProfile. Debido a que la mayoría de los métodos requieren un input del usuario o solo imprimen listas ya definidas, se concentró el análisis en los métodos que emplean algoritmos de búsqueda/definición. Estos fueron evaluarAlergias, que toma un puntaje de alergia y retorna una lista de alergias al que se relaciona, y relacionar, que relaciona el contenido de 3 listas y un diccionario para ordenarlos de forma correcta. Al final también se muestra un análisis del programa de forma general. **Todos estos resultados se pueden verificar ya sea por medio de src/optimizacion.py o con commando `make performance`**.
