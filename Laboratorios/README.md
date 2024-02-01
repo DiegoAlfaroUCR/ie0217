@@ -4,3 +4,4 @@ En esta seccion se encuentran los laboratorios con el código generado durante l
 * [Laboratorio 2](/Laboratorios/Laboratorio_2/)
 * [Laboratorio 3](/Laboratorios/Laboratorio_3/)
 * [Laboratorio 4](/Laboratorios/Laboratorio_4/)
+* [Laboratorio 5](/Laboratorios/Laboratorio_5/)
