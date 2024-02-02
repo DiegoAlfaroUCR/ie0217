@@ -5,3 +5,4 @@ En esta sección se encuentran las diferentes tareas asignadas, en cada una se r
 * [Tarea 2](/Tareas/TAREA_DOS/)
 * [Tarea 3](/Tareas/TAREA_TRES/)
 * [Tarea 4](/Tareas/TAREA_CUATRO/)
+* [Tarea 5](/Tareas/TAREA_CINCO/)
