@@ -24,3 +24,6 @@ Aquí se encuentran los archivos estudiados en cada sesión de teoría del curso
 * [Sesión 13](/Trabajos%20previos/Sesión_13/)
 * [Sesión 14](/Trabajos%20previos/Sesión_14/)
 * [Sesión 15](/Trabajos%20previos/Sesión_15/)
+
+## Previo #6:
+* [Sesión 16](/Trabajos%20previos/Sesión_16/)
