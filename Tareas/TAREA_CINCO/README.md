@@ -173,6 +173,10 @@ Para comparar estos se hizo un gráfico de puntos con la cantidad de pasajeros e
 
 ![](/Tareas/TAREA_CINCO/img/pasajerosXvuelos.png)
 
+### Aplicaciones
+
+Por medio de un análisis como el hecho aquí, se pueden identificar tendencias sobre el flujo de tráfico aereo de forma profunda. Por ejemplo, utilizando los datos de la cantidad de vuelos por ciudad, es posible decidir cuales aeropuertos/ciudades requieren mayor atención en términos de mantenimiento y seguridad. Por medio de los análisis según los meses se pueden determinar las épocas con mayor cantidad de tráfico, significando más comercio en las ciudades listadas, en los aeropuertos e incluso otros factores como las emisiones de CO2 o el esparcimiento de virus como el COVID-19. Este último punto es un caso de análisis que podría utilizar todas las conclusiones ya alcanzadas, ya que el conocer como se comporta el flujo de grandes cantidades de personas a través de estados permite atribuir a la presencia de brotes y picos en las métricas del COVID-19. Finalmente, pese a que estos hallazgos no son revoulcionarios de ninguna manera, representan una forma simple y confiable de analizar el transporte aéreo comercial.
+
 # Parte Teórica
 
 ## Iteradores
