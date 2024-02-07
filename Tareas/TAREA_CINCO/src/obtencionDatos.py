@@ -39,9 +39,9 @@ def limpiar(raw):
     # Se pasan los meses al nombre del mes, no un número.
     limpios["MONTH"] = limpios["MONTH"].astype(str)
     meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio",
-             "Agosto", "Septiembre"]
+             "Agosto", "Septiembre", "Octubre"]
 
-    for num in range(1, 10):
+    for num in range(1, 11):
         limpios.loc[limpios["MONTH"] == str(num), "MONTH"] = meses[num - 1]
 
     return limpios
