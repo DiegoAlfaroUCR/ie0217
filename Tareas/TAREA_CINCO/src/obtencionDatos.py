@@ -1,8 +1,23 @@
 import pandas as pd
 
+"""
+Parte 1: Funciones para obtener datos del csv.
+Autor: Diego Alfaro Segura
+Copyright: Licenciado bajo CC BY-NC-ND 4.0
+"""
+
 
 def obtenerDatos(archivo):
+    """Guardar datos de un csv a un DataFrame
+
+    :param archivo: Dirección del csv
+    :type archivo: str
+    :return: Datos en un DataFrame
+    :rtype: DataFrame
+    """
     print(f"Cargando datos de {archivo}...")
+
+    # Manejo de errores.
     try:
         raw = pd.read_csv(archivo)
         return limpiar(raw)
@@ -12,6 +27,13 @@ def obtenerDatos(archivo):
 
 
 def limpiar(raw):
+    """Filtrar y limpiar los datos leidos.
+
+    :param raw: Datos crudos.
+    :type raw: DataFrame
+    :return: Datos limpiados.
+    :rtype: DataFrame
+    """
     # Se escogen las categorias útiles solamente:
     utiles = raw[["PASSENGERS",
                   "UNIQUE_CARRIER",
