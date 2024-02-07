@@ -1,11 +1,9 @@
 import pandas as pd
-import os
 
 
 def obtenerDatos(archivo):
     print(f"Cargando datos de {archivo}...")
     try:
-        os.chdir('src/')        # Hay que revisar en linux.
         raw = pd.read_csv(archivo)
         return limpiar(raw)
 
@@ -18,7 +16,9 @@ def limpiar(raw):
     utiles = raw[["PASSENGERS",
                   "UNIQUE_CARRIER",
                   "CARRIER_NAME",
+                  "ORIGIN",
                   "ORIGIN_CITY_NAME",
+                  "DEST",
                   "DEST_CITY_NAME",
                   "MONTH",
                   ]]
