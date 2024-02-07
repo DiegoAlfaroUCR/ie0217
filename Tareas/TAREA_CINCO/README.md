@@ -1,3 +1,16 @@
+# Instrucciones de ejecución
+La parte práctica de esta tarea incluye la elaboración de dos programas de análisis de datos, con su propio Makefile para ejecutarlo. El código fuente del programa se encuentra en el directorio [src](/Tareas/TAREA_CINCO/src/) y el [Makefile](/Tareas/TAREA_CINCO/Makefile) se encuentra en el directorio actual. Para iniciar ambos programas, en el orden de parte1 y luego parte2, solo debe correr el comando make en la carpeta actual (ie0217\Tareas\TAREA_CINCO).
+
+Windows (depende de su configuración de mingw):
+```
+mingw32-make
+```
+
+Linux:
+```
+make
+```
+
 # Parte Práctica
 
 ## Parte 1: Análisis
@@ -93,7 +106,7 @@ Mes con mayor cantidad de vuelos: Octubre
 
 Estos datos se pueden visualizar más claramente en el siguiente gráfico, la linea indica meses con disminuición notable en vuelos como febrero, mayo y agosto y picos en octubre, julio y abril.
 
-![](/img/vuelosXmes.png)
+![](/Tareas/TAREA_CINCO/img/vuelosXmes.png)
 
 #### Vuelos por ciudad
 
@@ -116,7 +129,7 @@ CMH fue destino de 446 vuelos y salida de 425 vuelos
 
 Para comparar los vuelos entre las ciudades tomando en cuenta si son de salida o de entrada, se realizó un gráfico de barras con dos barras por ciudad, este gráfico es bastante extenso pero muestra como ciertas ciudades son notablemente más transitadas que otras. Mientras que la mayoría se encuentran en los mismos rangos (0 a 400 vuelos) existen 23 ciudades que pasan este rango y llegan hasta los 1000 vuelos registrados. La más prominente fue `DEN` o `Denver`.
 
-![](/img/vuelosXciudad.png)
+![](/Tareas/TAREA_CINCO/img/vuelosXciudad.png)
 
 #### Pasajeros por mes
 
@@ -139,7 +152,7 @@ Mes con mayor cantidad de pasajeros: Julio
 
 Estos se visualizaron a través de un pie chart, que indica que la distribucion de pasajeros por mes fue muy parecida, pero si se notaron las diferencias. Por ejemplo, febrero fue el que tuvo menor cantidad, con solo 8.1% comparado al mayor (octubre) con 11.1%
 
-![](/img/pasajerosXmes.png)
+![](/Tareas/TAREA_CINCO/img/pasajerosXmes.png)
 
 
 #### Pasajeros por cantidad de vuelos
@@ -158,7 +171,7 @@ Finalmente, se comparó la cantidad de vuelos con la cantidad de pasajeros regis
 
 Para comparar estos se hizo un gráfico de puntos con la cantidad de pasajeros en función de la cantidad de vuelos. Note que el eje de los pasajeros posee unidades de 1*10^7. Este mostró lo esperado, pues la relación entre la cantidad de pasajeros y la cantidad de vuelos es proporcional, entre más vuelos se hayan hecho más pasajeros se llevaron. Aún así, la relación entre estos no es lineal sino exponencial, por lo que se infiere que la cantidad total de pasajeros aumenta drásticamente por otros factores. Uno de estos factores puede ser que según en las ciudades donde se hacen más vuelos se usan aviones con más capacidad.
 
-![](/img/pasajerosXvuelos.png)
+![](/Tareas/TAREA_CINCO/img/pasajerosXvuelos.png)
 
 # Parte Teórica
 
