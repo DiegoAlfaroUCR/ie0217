@@ -1,6 +1,7 @@
 import pandas as pd
 from generarCSV import generarCSV
 from regression import precioXaño, kilometrajeXaño
+from clustering import generarClusters
 
 
 def obtenerDatos():
@@ -22,3 +23,4 @@ generarCSV()
 datos = obtenerDatos()
 precioXaño(datos)
 kilometrajeXaño(datos)
+generarClusters(datos)

@@ -5,6 +5,10 @@ from zipfile import ZipFile
 
 
 def generarCSV():
+    # Se sale si el csv ya existe.
+    if os.path.isfile("CAR DETAILS FROM CAR DEKHO.csv"):
+        return
+
     # Credenciales
     username = "daas0204"
     key = "392b33bdd8c0f9858613f4e855bce25e"
