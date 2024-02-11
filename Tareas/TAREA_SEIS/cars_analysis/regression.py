@@ -1,47 +1,91 @@
-from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn.pipeline import make_pipeline
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
 import matplotlib.pyplot as plt
 
 
 def precioXaño(datos):
+    print("### Regresiones del precio en función del año. ###")
     # Se extraen los datos del DataFrame.
     datos = datos.sort_values(by=["year"])
-    xRaw = datos["year"].values.reshape(-1, 1)
-    yRaw = datos["selling_price"].values
-
-    # Se crean los datos train y test.
-    X_train, X_test, y_train, y_test = train_test_split(
-        xRaw, yRaw, test_size=0.2, random_state=42)
-
-    # Se ordena el eje X de prueba, pues este se desordena y causa
-    # problemas en el modelo polinomial.
-    X_test.sort(axis=0)
+    X = datos["year"].values.reshape(-1, 1)
+    Y = datos["selling_price"].values
 
     # Se hace la regresión lineal
     lineal = LinearRegression()
-    lineal.fit(X_train, y_train)
-    yLineal = lineal.predict(X_test)
+    lineal.fit(X, Y)
+    yLineal = lineal.predict(X)
+    print("Métricas de regresion lineal:",
+          f"\n(R²): {r2_score(Y, yLineal)}",
+          f"\n(MSE): {mean_squared_error(Y, yLineal)}",
+          f"\n(MAE): {mean_absolute_error(Y, yLineal)}")
 
     # Se hace la regresión no lineal
     degree = 4
     noLineal = make_pipeline(PolynomialFeatures(degree), LinearRegression())
-    noLineal.fit(X_train, y_train)
-    yNoLineal = noLineal.predict(X_test)
+    noLineal.fit(X, Y)
+    yNoLineal = noLineal.predict(X)
+    print("\nMétricas de regresion no lineal:",
+          f"\n(R²): {r2_score(Y, yNoLineal)}",
+          f"\n(MSE): {mean_squared_error(Y, yNoLineal)}",
+          f"\n(MAE): {mean_absolute_error(Y, yNoLineal)}")
 
     # Se muestran todos los puntos.
-    plt.scatter(xRaw, yRaw)
+    plt.scatter(X, Y)
 
     # Se muestran las regresiones.
-    plt.plot(X_test, yLineal, c="Red", label="Regresión lineal.")
-    plt.plot(X_test, yNoLineal, c="Green",
+    plt.plot(X, yLineal, c="Red", label="Regresión lineal.")
+    plt.plot(X, yNoLineal, c="Green",
              label=f"Regresión polinomica grado {degree}.")
 
     # Personalización
     plt.title("Precio en función del año.")
     plt.xlabel("Año.")
     plt.ylabel("Precio.")
+    plt.legend()
+    plt.tight_layout()
+    plt.show()
+
+
+def kilometrajeXaño(datos):
+    print("\n### Regresiones del kilometraje en función del año. ###")
+    # Se extraen los datos del DataFrame.
+    datos = datos.sort_values(by=["year"])
+    X = datos["year"].values.reshape(-1, 1)
+    Y = datos["km_driven"].values
+
+    # Se hace la regresión lineal
+    lineal = LinearRegression()
+    lineal.fit(X, Y)
+    yLineal = lineal.predict(X)
+    print("Métricas de regresion lineal:",
+          f"\n(R²): {r2_score(Y, yLineal)}",
+          f"\n(MSE): {mean_squared_error(Y, yLineal)}",
+          f"\n(MAE): {mean_absolute_error(Y, yLineal)}")
+
+    # Se hace la regresión no lineal
+    degree = 3
+    noLineal = make_pipeline(PolynomialFeatures(degree), LinearRegression())
+    noLineal.fit(X, Y)
+    yNoLineal = noLineal.predict(X)
+    print("\nMétricas de regresion no lineal:",
+          f"\n(R²): {r2_score(Y, yNoLineal)}",
+          f"\n(MSE): {mean_squared_error(Y, yNoLineal)}",
+          f"\n(MAE): {mean_absolute_error(Y, yNoLineal)}")
+
+    # Se muestran todos los puntos.
+    plt.scatter(X, Y)
+
+    # Se muestran las regresiones.
+    plt.plot(X, yLineal, c="Red", label="Regresión lineal.")
+    plt.plot(X, yNoLineal, c="Green",
+             label=f"Regresión polinomica grado {degree}.")
+
+    # Personalización
+    plt.title("Kilometraje en función del año.")
+    plt.xlabel("Año.")
+    plt.ylabel("Kilometraje.")
     plt.legend()
     plt.tight_layout()
     plt.show()
