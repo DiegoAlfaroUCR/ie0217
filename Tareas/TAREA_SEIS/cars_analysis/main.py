@@ -1,10 +1,11 @@
 import pandas as pd
-from regression import precioXaño
+from generarCSV import generarCSV
+from regression import precioXaño, kilometrajeXaño
 
 
 def obtenerDatos():
-    # De momento se lee del csv descargado.
-    raw = pd.read_csv("cars_analysis\\CAR DETAILS FROM CAR DEKHO.csv")
+    # Se leen los datos del csv descargado.
+    raw = pd.read_csv("CAR DETAILS FROM CAR DEKHO.csv")
 
     # Se sacan categorias útiles.
     utiles = raw[["selling_price", "year", "km_driven"]]
@@ -17,5 +18,7 @@ def obtenerDatos():
     return limpios
 
 
+generarCSV()
 datos = obtenerDatos()
 precioXaño(datos)
+kilometrajeXaño(datos)
