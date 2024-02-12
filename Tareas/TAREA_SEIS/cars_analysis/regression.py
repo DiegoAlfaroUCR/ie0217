@@ -4,9 +4,20 @@ from sklearn.pipeline import make_pipeline
 from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
 import matplotlib.pyplot as plt
 
+"""
+Parte Práctica: Métodos para realizar regresiones.
+Autor: Diego Alfaro Segura
+Copyright: Licenciado bajo CC BY-NC-ND 4.0
+"""
+
 
 def precioXaño(datos):
-    print("### Regresiones del precio en función del año. ###")
+    """Función para analizar el precio de los carros en función
+    al año de compra.
+    """
+
+    print("### Regresiones del precio en función del año de compra. ###")
+
     # Se extraen los datos del DataFrame.
     datos = datos.sort_values(by=["year"])
     X = datos["year"].values.reshape(-1, 1)
@@ -40,16 +51,21 @@ def precioXaño(datos):
              label=f"Regresión polinomica grado {degree}.")
 
     # Personalización
-    plt.title("Precio en función del año.")
-    plt.xlabel("Año.")
-    plt.ylabel("Precio.")
+    plt.title("Precio en función del año de compra.")
+    plt.xlabel("Año de compra.")
+    plt.ylabel("Precio del carro.")
     plt.legend()
     plt.tight_layout()
     plt.show()
 
 
 def kilometrajeXaño(datos):
+    """Función para analizar el kilometraje de los carros en función
+    al año de compra.
+    """
+
     print("\n### Regresiones del kilometraje en función del año. ###")
+
     # Se extraen los datos del DataFrame.
     datos = datos.sort_values(by=["year"])
     X = datos["year"].values.reshape(-1, 1)
@@ -84,8 +100,8 @@ def kilometrajeXaño(datos):
 
     # Personalización
     plt.title("Kilometraje en función del año.")
-    plt.xlabel("Año.")
-    plt.ylabel("Kilometraje.")
+    plt.xlabel("Año de compra.")
+    plt.ylabel("Kilometraje del carro.")
     plt.legend()
     plt.tight_layout()
     plt.show()

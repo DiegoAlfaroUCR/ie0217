@@ -4,10 +4,21 @@ from requests.auth import HTTPBasicAuth
 from zipfile import ZipFile
 import pandas as pd
 
+"""
+Parte Práctica: Métodos para manejar datos en CSV.
+Autor: Diego Alfaro Segura
+Copyright: Licenciado bajo CC BY-NC-ND 4.0
+"""
+
+CSV = os.path.join("cars_analysis", "CAR DETAILS FROM CAR DEKHO.csv")
+
 
 def generarCSV():
+    """Función que obtiene los datos a analizar de su dataset en la web
+    por medio de requests a la página.
+    """
     # Se sale si el csv ya existe.
-    if os.path.isfile("cars_analysis\\CAR DETAILS FROM CAR DEKHO.csv"):
+    if os.path.isfile(CSV):
         return
 
     # Credenciales
@@ -47,11 +58,16 @@ def generarCSV():
 
 
 def obtenerDatos():
+    """Función que limpia y guarda los datos a analizar en un DataFrame.
+
+    :return: Datos útiles y limpios por analizar.
+    :rtype: DataFrame
+    """
     # Se genera el CSV si no existe.
     generarCSV()
 
     # Se leen los datos del csv descargado.
-    raw = pd.read_csv("cars_analysis\\CAR DETAILS FROM CAR DEKHO.csv")
+    raw = pd.read_csv(CSV)
 
     # Se sacan categorias útiles.
     utiles = raw[["selling_price", "year", "km_driven"]]
