@@ -1,6 +1,6 @@
 from generarCSV import obtenerDatos
 from regression import precioXaño, kilometrajeXaño
-from clustering import generarClusters
+from clustering import mostrarClusters
 
 """
 Parte Práctica: Archivo main.
@@ -12,4 +12,4 @@ Copyright: Licenciado bajo CC BY-NC-ND 4.0
 datos = obtenerDatos()
 precioXaño(datos)
 kilometrajeXaño(datos)
-generarClusters(datos)
+mostrarClusters(datos)
