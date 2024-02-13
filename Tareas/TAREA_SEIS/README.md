@@ -1,5 +1,5 @@
 # Instrucciones de ejecución
-La parte práctica de esta tarea incluye la elaboración de un paquete con la función de analizar un conjunto de datos, con su propio Makefile para ejecutarlo. El código fuente del programa se encuentra en el directorio [cars_analysis](/Tareas/TAREA_SEIS/cars_analysis/) y el [Makefile](/Tareas/TAREA_SEIS/Makefile) se encuentra en el directorio actual. Para iniciar el programa solo debe correr el comando make en la carpeta actual (ie0217\Tareas\TAREA_SEIS).
+La parte práctica de esta tarea incluye la elaboración de un paquete con la función de analizar un conjunto de datos, con su propio Makefile para ejecutarlo. El código fuente del programa se encuentra en el directorio [src](/Tareas/TAREA_SEIS/src/) y el [Makefile](/Tareas/TAREA_SEIS/Makefile) se encuentra en el directorio actual. Para iniciar el programa solo debe correr el comando make en la carpeta actual (ie0217\Tareas\TAREA_SEIS).
 
 Windows (depende de su configuración de mingw):
 ```

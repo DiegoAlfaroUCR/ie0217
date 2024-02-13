@@ -10,7 +10,7 @@ Autor: Diego Alfaro Segura
 Copyright: Licenciado bajo CC BY-NC-ND 4.0
 """
 
-CSV = os.path.join("cars_analysis", "CAR DETAILS FROM CAR DEKHO.csv")
+CSV = os.path.join("src", "cars_analysis", "CAR DETAILS FROM CAR DEKHO.csv")
 
 
 def generarCSV():
@@ -51,7 +51,7 @@ def generarCSV():
 
     # Se extrae el archivo.
     with ZipFile(path, 'r') as zip_ref:
-        zip_ref.extractall("cars_analysis")
+        zip_ref.extractall(os.path.join("src", "cars_analysis"))
 
     # Se remueve el .zip
     os.remove(path)
