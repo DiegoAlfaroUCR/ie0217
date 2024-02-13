@@ -1,4 +1,5 @@
 from sklearn.cluster import KMeans
+from sklearn.metrics import silhouette_score
 import matplotlib.pyplot as plt
 
 """
@@ -8,9 +9,9 @@ Copyright: Licenciado bajo CC BY-NC-ND 4.0
 """
 
 
-def kOptimo(ejes):
-    """Función para emplear método del codo y obtener cantidad
-    de clusters óptima.
+def kOptimo(ejes, metodo):
+    """Función para emplear métodos de codo o silueta para
+    obtener cantidad de clusters óptima.
 
     :param ejes: Datos a usar de los carros.
     :type ejes: DataFrame
@@ -18,24 +19,35 @@ def kOptimo(ejes):
     :rtype: int
     """
 
-    # Se encuentran las inercias de los diferentes procesos de clustering.
-    inertias = []
-    for k in range(1, 11):
+    # Se encuentran la inercia/puntaje de silueta de los
+    # diferentes procesos de clustering.
+    score = []
+    for k in range(2, 11):
         kmeans = KMeans(n_clusters=k, random_state=42)
         kmeans.fit(ejes)
-        inertias.append(kmeans.inertia_)
+        if metodo == "Inercias":
+            valor = kmeans.inertia_
+        else:
+            valor = silhouette_score(ejes, kmeans.labels_)
+        score.append(valor)
 
-    # Se grafican las inercias en función a la cantidad de clusters.
-    plt.plot(range(1, 11), inertias, marker='o')
-    plt.title(f"Método del Codo para {ejes.columns[0]}/{ejes.columns[1]}.")
+    # Se grafican las métricas en función a la cantidad de clusters.
+    plt.plot(range(2, 11), score, marker='o')
+    plt.title(f"Método de {metodo} para {ejes.columns[0]}/{ejes.columns[1]}.")
     plt.xlabel('Número de Clusters (k)')
-    plt.ylabel('Inercia de procesos.')
+    plt.ylabel(f"{metodo} de procesos.")
     plt.show()
 
     # Se encuentra el número de clusters bajo cierto threshold.
-    for numk in range(0, 10):
-        if inertias[numk] < 0.2e15:
-            return numk + 1
+    # El threshold depende del tipo de método que se usa.
+    for numk in range(len(score)):
+        if (metodo == "Inercias") and (score[numk] < 2e14):
+            print(f"Cantidad optima de clusters determinada: {numk + 2}")
+            return numk + 2
+
+        elif (metodo == "Siluetas") and (score[numk] > 0.8):
+            print(f"Cantidad optima de clusters determinada: {numk + 2}")
+            return numk + 2
 
 
 def generarClusters(ejes, k):
@@ -73,10 +85,10 @@ def mostrarClusters(datos):
     :type datos: DataFrame
     """
 
-    # Clusters con el precio en función al kilometraje.
+    # Clusters con el precio en función al kilometraje, con método del codo.
     ejes1 = datos[["km_driven", "selling_price"]]
-    generarClusters(ejes1, kOptimo(ejes1))
+    generarClusters(ejes1, kOptimo(ejes1, "Inercias"))
 
-    # Clusters con el precio en función del año.
+    # Clusters con el precio en función del año, con método de siluetas.
     ejes2 = datos[["year", "selling_price"]]
-    generarClusters(ejes2, kOptimo(ejes2))
+    generarClusters(ejes2, kOptimo(ejes2, "Siluetas"))

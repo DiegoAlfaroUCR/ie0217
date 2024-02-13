@@ -14,6 +14,8 @@ Copyright: Licenciado bajo CC BY-NC-ND 4.0
 def precioXaño(datos):
     """Función para analizar el precio de los carros en función
     al año de compra.
+    :param datos: Datos de los carros.
+    :type datos: DataFrame
     """
 
     print("### Regresiones del precio en función del año de compra. ###")
@@ -62,6 +64,8 @@ def precioXaño(datos):
 def kilometrajeXaño(datos):
     """Función para analizar el kilometraje de los carros en función
     al año de compra.
+    :param datos: Datos de los carros.
+    :type datos: DataFrame
     """
 
     print("\n### Regresiones del kilometraje en función del año. ###")
