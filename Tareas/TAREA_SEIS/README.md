@@ -1,3 +1,95 @@
+# Instrucciones de ejecución
+La parte práctica de esta tarea incluye la elaboración de un paquete con la función de analizar un conjunto de datos, con su propio Makefile para ejecutarlo. El código fuente del programa se encuentra en el directorio [cars_analysis](/Tareas/TAREA_SEIS/cars_analysis/) y el [Makefile](/Tareas/TAREA_SEIS/Makefile) se encuentra en el directorio actual. Para iniciar el programa solo debe correr el comando make en la carpeta actual (ie0217\Tareas\TAREA_SEIS).
+
+Windows (depende de su configuración de mingw):
+```
+mingw32-make
+```
+
+Linux:
+```
+make
+```
+
+# Parte Práctica: Análisis
+
+Conforme a los datos a analizar, se tomaron los datos encontrados en la base de datos de carros encontrada en: https://www.kaggle.com/datasets/akshaydattatraykhare/car-details-dataset. Entre los datos registrados para cada carro, se incluyeron la fecha de compra, el kilometraje del carro y el precio de venta del carro, estos fueron los datos escogidos para realizar el análisis.
+
+## Regresiones
+
+Se realizaron regresiones para predecir tendencias en el comportamiento de los datos. Para cada una se realizó primero una regresión lineal y luego una regresión polinómica. Ambas se graficaron en conjunto para mostrar la diferencia entre estas. Además, se encontraron las métricas de error de cada regresión para comprar que tan aproximadas fueron las predicciones.
+
+### Precio vs Año
+La primera de estas fue buscando la relación entre el precio de venta del carro en función al año de venta. Esta mostró una relación aparentemente no lineal, donde el precio se mantuvo similar hasta que el año pasó de 2005. Luego del 2005 se mostró un aumento considerable en los precios registrados, llegando a ser hasta 8 veces más alto que los previos al 2005. Es importante notar que la escala de los precios es de 1x10</sub><sup>6</sup>.
+
+![](/Tareas/TAREA_SEIS/img/reg_precioXaño.png)
+
+Debido a la alta cantidad de puntos no se logra expresar de manera exacta una regresión general, pero se nota que ambas regresiones muestran la naturaleza del aumento del precio. Sin embargo la regresión polinómica es más exacta pues si se acopla bien a los primeros valores. Las métricas de error de las regresiones evidencian esta conclusión:
+
+```
+### Regresiones del precio en función del año de compra. ###
+Métricas de regresion lineal: 
+(R²): 0.17133115701744017 
+(MSE): 277306997858.82544 
+(MAE): 268856.6053436599
+
+Métricas de regresion no lineal: 
+(R²): 0.19271685574220287 
+(MSE): 270150455217.33737 
+(MAE): 255503.81371500393
+```
+
+Se observa que el coeficiente R2 de la regresión polinomica es ligeramente mejor al de la lineal, pero no en gran cantidad. Por otro lado, el MSE se mantiene ligeramente mayor al MAE, indicando que se encuentran valores atípicos que afectan los resultados. Estos se pueden visualizar en la parte superior derecha de la figura.
+
+### Kilometraje vs Año
+Luego se generó una regresión referente al kilometraje del carro en función del año de venta. Estos datos presentaron una forma no lineal, con forma similar a una distribución normal. Esto pues el kilometraje aumenta conforme aumentan los años, pero luego empieza a descender. Esta forma se aprecia de mejor manera con la regresión polinómica, pero aún así no se muestran las tendencias exactamente.
+
+![](/Tareas/TAREA_SEIS/img/reg_kiloXaño.png)
+
+El error de la regresión lineal fue mucho pero que la regresión polinómica, esto denotado por el coeficiente R2. Esto es por la forma creciente y luego decreciente de la distribución. Además se nota que similar a las regresiones pasadas, la regresión polinómica fue capaz de mantenerse dentro de los datos graficados y la lineal no.
+
+```
+### Regresiones del kilometraje en función del año. ###
+Métricas de regresion lineal:
+(R²): 0.17613813996251204
+(MSE): 1792040395.0437098
+(MAE): 28992.169678791877
+
+Métricas de regresion no lineal:
+(R²): 0.248497380760755
+(MSE): 1634646675.592677
+(MAE): 26973.569851923647
+```
+
+Por parte del MSE y MAE, se nota que el MAE es mucho mayor al MSE. Esto indica que la magnitud del error promedio con la predicción es alta, mientras que se no hay tanto error con respecto a valores atípicos.
+
+## Clustering
+Finalmente, se realizó un proceso de agrupamiento de los carros según sus características por medio de la librería K-MEANS. Se realizaron dos de estas agupaciones, una reflejando la regresión Precio vs Año y la otra relacionando el precio de venta con el kilometraje del carro. Previo a cada proceso de clustering se realizó un análisis de la cantidad de clusters óptima a utilizar. Para cada uno se empleó un método distinto, una siendo con el método del codo (inercias) y otra con el método de silueta (siluetas). Una vez se obtiene la cantidad de clusters se generan con dicha cantidad.
+
+### Precio y Kilometraje
+
+Para los clusters que toman en cuenta el precio y el kilometraje de los carros, se utilizó el método del codo para encontrar la cantidad de clusters a usar. Al graficar las inercias de diferentes modelos de clustering se obtiene el siguiente gráfico:
+
+![](/Tareas/TAREA_SEIS/img/metodoCodo.png)
+
+Debido a que la métrica de inercias indica un mejor modelo de clustering entre menor sea, se podría elegir una cantidad de clusters alta como 10, pero la ganancia es poca relativa al tiempo de procesamiento y a la sobrecarga de grupos. Por esto se decide emplear una cantidad de 5 clusters, ya que es lo suficientemente optimizada pero no llega a generar demasiadas agrupaciones. Con este modelo se generan las siguientes agrupaciones:
+
+![](/Tareas/TAREA_SEIS/img/clustersCodo.png)
+
+De estas agrupaciones se pueden inferir que los carros se pueden agrupar por los rangos del precio de venta. Se denota que la agrupación es principalmente por el precio y no por el kilometraje, pues los puntos a la derecha del gráfico coinciden en cluster con los de su mismo nivel de precio. Estos rangos no son proporcionales, pues los primeros tres grupos son de menor tamaño que los 2 superiores. La densidad de estos niveles indica que la mayoría de los carros se encuentran en estos niveles inferiores y bajo un rango común de 0 a 300000km de kilometraje. Por otro lado, carros más costosos no presentan kilometrajes altos, ya que no suben de alrededor de los 100000km de kilometraje. Los carros con kilometrajes muy altos poseen precios que los colocan en grupos de precios bajos. 
+
+### Precio y Año
+
+Finalmente, se empleó una agrupación de clusters por medio de las categorías del precio y el año de venta. Primero se empleó el método de siluetas para determinar la cantidad de clusters apropiada a usar. En el siguiente gráfico se muestran los puntajes de las siluetas de los modelos de clustering según la cantidad de clusters:
+
+![](/Tareas/TAREA_SEIS/img/metodoSilueta.png)
+
+Es importante denotar que los puntajes de siluetas se consideran mejores entre más cercanos sean a 1. En este caso el análisis muestra que el menor número de clusters (2) es el más cercano a esta métrica. Al generar la agrupación con esta cantidad de clusters se genera la siguiente gráfica:
+
+![](/Tareas/TAREA_SEIS/img/clustersSilueta.png)
+
+Los clusters generados no son tan descriptivos como los de la sección pasada, pero se puede inferir la razón dada por el análisis de la silueta. Se nota como la cantidad de carros con un precio de venta alrededor de 2 000 000 o menor, es mucho mayor a los que poseen un precio de venta mayor a 2 000 000. Se puede notar que la densidad de puntos en el cluster menor a 2 000 000 es muy alta, mientras que los puntos en el cluster superior son más dispersos. De esto se puede concluir que los carros con precios de venta muy altos son menores y poseen precios más distintos entre sí. Esto es debido a que, estatísticamente, con una población normal la mayoría de carros serán de valor promedio, y estos valores de venta son más similares por la competencia entre sí. Por otro lado los carros de mayor valor poseen precios más extravagantes y por ende son más dispersos.
+
 # Parte Teórica
 
 ## Regresión:

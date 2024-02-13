@@ -41,7 +41,7 @@ def kOptimo(ejes, metodo):
     # Se encuentra el número de clusters bajo cierto threshold.
     # El threshold depende del tipo de método que se usa.
     for numk in range(len(score)):
-        if (metodo == "Inercias") and (score[numk] < 2e14):
+        if (metodo == "Inercias") and (score[numk] < 1.5e14):
             print(f"Cantidad optima de clusters determinada: {numk + 2}")
             return numk + 2
 
